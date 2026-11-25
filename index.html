@@ -1,0 +1,1186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Better Truths: What God Says When Life Hurts. Ten chapters of biblical encouragement, one section per card.">
+<title>Better Truths</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@500;600&display=swap">
+<style>
+/* Layout: a horizontal deck of full-screen cards, one section per card, swiped with scroll-snap. */
+:root {
+  --bg: #f6f8f5;
+  --card: #fdfefc;
+  --fg: #1e2a22;
+  --muted: #5d6b62;
+  --accent: #23794a;
+  --rule: #d5ded7;
+  --display: "Crimson Pro", Georgia, "Times New Roman", serif;
+  --body: "Crimson Pro", Georgia, "Times New Roman", serif;
+  --ui: "Inter", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1612; --card: #141d18; --fg: #e3ebe5; --muted: #9aa9a0;
+    --accent: #6cc794; --rule: #2a3a31; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1612; --card: #141d18; --fg: #e3ebe5; --muted: #9aa9a0;
+  --accent: #6cc794; --rule: #2a3a31; color-scheme: dark;
+}
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); overflow: hidden; }
+.app { height: 100%; display: flex; flex-direction: column; }
+.bar {
+  display: flex; align-items: center; gap: 12px;
+  padding-block: 10px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  font-family: var(--ui); font-size: 13px; color: var(--muted);
+  border-bottom: 1px solid var(--rule); background: var(--bg);
+}
+.bar .where { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600; letter-spacing: .02em; }
+.bar button, .foot button {
+  font: inherit; font-weight: 600; color: var(--accent); background: none;
+  border: 1px solid var(--rule); border-radius: 999px; padding: 6px 12px; cursor: pointer;
+}
+.bar button:focus-visible, .foot button:focus-visible, .toc button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.track {
+  flex: 1; min-height: 0; display: flex; overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
+}
+.track::-webkit-scrollbar { display: none; }
+.card {
+  flex: 0 0 100%; scroll-snap-align: start; scroll-snap-stop: always;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+}
+.inner {
+  max-width: 36rem; margin: 0 auto; padding-block: 28px 48px;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  font-size: 20px; line-height: 1.55;
+}
+.inner p { margin: 0 0 .9em; }
+h1, h2 { font-family: var(--display); text-wrap: balance; line-height: 1.15; margin: 0 0 .5em; }
+h1 { font-size: 2.3rem; font-weight: 700; }
+h2 { font-size: 1.55rem; font-weight: 600; color: var(--accent); }
+.kicker { font-family: var(--ui); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: .6em !important; }
+.sub { font-style: italic; color: var(--muted); font-size: 1.1rem; }
+.opener { padding-bottom: 1em; margin-bottom: 1.2em; border-bottom: 1px solid var(--rule); }
+blockquote {
+  margin: 1.2em 0; padding: 14px 16px; background: var(--card);
+  border: 1px solid var(--rule); border-radius: 10px; font-style: italic;
+}
+blockquote p { margin: 0; }
+blockquote cite { display: block; text-align: right; font-style: normal; font-family: var(--ui); font-size: 13px; font-weight: 600; color: var(--accent); margin-top: 8px; }
+strong { font-weight: 600; }
+.cover .inner { min-height: 100%; display: flex; flex-direction: column; justify-content: center; text-align: center; }
+.booktitle { font-size: 3rem; }
+.hint { font-family: var(--ui); font-size: 13px; color: var(--muted); margin-top: 2.5em !important; }
+.toc { list-style: none; padding: 0; margin: 0 0 1.5em; display: grid; gap: 6px; }
+.toc button {
+  width: 100%; text-align: left; display: flex; gap: 12px; align-items: baseline;
+  background: var(--card); border: 1px solid var(--rule); border-radius: 10px;
+  padding: 10px 14px; color: var(--fg); cursor: pointer; font: inherit;
+}
+.toc .k { font-family: var(--ui); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); flex: 0 0 5.6em; }
+.toc .t { font-family: var(--display); font-size: 1.15rem; font-weight: 600; }
+.small { font-size: 13px; color: var(--muted); }
+.foot {
+  display: flex; align-items: center; gap: 12px;
+  padding-block: 8px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  border-top: 1px solid var(--rule); font-family: var(--ui); font-size: 12px; color: var(--muted);
+  background: var(--bg);
+}
+.progress { flex: 1; height: 3px; background: var(--rule); border-radius: 3px; overflow: hidden; }
+.progress i { display: block; height: 100%; width: 0; background: var(--accent); }
+.count { font-variant-numeric: tabular-nums; min-width: 5.5em; text-align: center; }
+@media (prefers-reduced-motion: reduce) { .track { scroll-behavior: auto; } }
+</style>
+<style>html{color-scheme:light} body{margin:0} :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-sizing:border-box} *,*::before,*::after{box-sizing:border-box}</style>
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <span class="where" id="where">Better Truths</span>
+    <button type="button" id="tocBtn">Contents</button>
+  </header>
+  <main class="track" id="track">
+<section class="card cover" data-label="Better Truths"><div class="inner"><p class="kicker">Joel Kindiak</p><h1 class="booktitle">Better Truths</h1><p class="sub">What God Says When Life Hurts</p><p class="hint">Swipe to begin</p></div></section>
+<section class="card" data-label="Contents"><div class="inner"><h2>Contents</h2><ol class="toc"><li><button type="button" data-go="2"><span class="k">Preface</span><span class="t">The Heart May Ache</span></button></li><li><button type="button" data-go="8"><span class="k">Chapter 1</span><span class="t">He Cares for You</span></button></li><li><button type="button" data-go="20"><span class="k">Chapter 2</span><span class="t">Greater Than Our Hearts</span></button></li><li><button type="button" data-go="32"><span class="k">Chapter 3</span><span class="t">Not Ashamed of Us</span></button></li><li><button type="button" data-go="44"><span class="k">Chapter 4</span><span class="t">Settled in a Home</span></button></li><li><button type="button" data-go="56"><span class="k">Chapter 5</span><span class="t">Near to the Brokenhearted</span></button></li><li><button type="button" data-go="68"><span class="k">Chapter 6</span><span class="t">Eternity in Our Hearts</span></button></li><li><button type="button" data-go="80"><span class="k">Chapter 7</span><span class="t">He Took Our Illnesses</span></button></li><li><button type="button" data-go="92"><span class="k">Chapter 8</span><span class="t">What the Locust Ate</span></button></li><li><button type="button" data-go="104"><span class="k">Chapter 9</span><span class="t">My Grace Is Sufficient</span></button></li><li><button type="button" data-go="116"><span class="k">Chapter 10</span><span class="t">Swallowed Up in Victory</span></button></li><li><button type="button" data-go="128"><span class="k">Conclusion</span><span class="t">Until We Are Home</span></button></li></ol><p class="small">Scripture quotations are from the ESV. This book has been written with the help of Generative AI.</p></div></section>
+<section class="card" data-label="Preface"><div class="inner"><div class="opener"><p class="kicker">Preface</p><h1>The Heart May Ache</h1></div><p>Everyone aches.</p>
+<p>Not all at once, and not in the same way. But sooner or later, everyone does. Some ache with anxiety, others with guilt they can’t shake or shame they can’t name. Some ache with loneliness in a crowded room, with a heart broken by someone they loved, with long, flat afternoons that feel like nothing at all. Some ache in their bodies. Some ache over the years they can’t get back, or the people they wish they were. And all of us, eventually, will face the ache of death.</p>
+<blockquote>
+<p>“Even in laughter the heart may ache, and the end of joy may be grief.”</p><cite>Proverbs 14:13</cite></blockquote>
+</div></section>
+<section class="card" data-label="Preface"><div class="inner"><h2>The Lie We Believe</h2><p>Most of us carry a quiet belief that we can un-ache ourselves. <em>When I get married. When I find the right friends. When I’m healthier, more successful, more disciplined. When I finally stop wanting what I can’t have.</em> We try one door after another, sure that the next one will lead out of the ache.</p>
+<p>None of them do. Change our circumstances and the ache simply changes shape. The single ache for marriage; the married ache in ways the single can’t see. The lonely ache for friends; the surrounded ache to be truly known. Even when we try to stop wanting altogether, we find that killing desire doesn’t remove the ache. It only removes the delight.</p>
+<p>There is no door out of the ache that we can open ourselves. It ends where God ends it.</p>
+</div></section>
+<section class="card" data-label="Preface"><div class="inner"><h2>Why That Is Good News</h2><p>Strangely, this is a comfort, for two reasons.</p>
+<p>The first is that we are not missing the cure. If something in this life could remove the ache, then every day without it would be a day of waiting for life to be fixed. But if nothing here can remove it, then nothing is being withheld from us. Our ache is not a verdict on our lives. It is simply a sign that we are alive, and not yet home.</p>
+<blockquote>
+<p>“And not only the creation, but we ourselves, who have the firstfruits of the Spirit, groan inwardly as we wait eagerly for adoption as sons, the redemption of our bodies.”</p><cite>Romans 8:23</cite></blockquote>
+<p>The second is that we are not alone in it. The people around us, however put-together they seem, are not on the far side of the ache looking back at us. They are in it too, in a different shape. Everyone aches.</p>
+</div></section>
+<section class="card" data-label="Preface"><div class="inner"><h2>What This Book Is</h2><p>This book doesn’t offer a way out of the ache. It offers something better: truth to carry us through it.</p>
+<p>Each chapter takes one particular pain, and answers it from Scripture. Every pain preaches its own sermon. Anxiety says <em>you’re one mistake away from losing it all.</em> Guilt says <em>you should have known better.</em> Loneliness says <em>everyone else has their people.</em> So each chapter sets the lie we hear beside the truth God has actually spoken, with His own words woven through.</p>
+<p>These aren’t techniques for feeling better, though I hope you do. They aren’t positive thinking either. They are things God has said, which remain true whether or not we feel them today. When we can’t out-think a lie with a mood, we need something truer.</p>
+<p>Every chapter ends in the same place: with the reminder that <em>everyone</em> struggles with this. Everyone is weak. Everyone gets lonely. Everyone falls short. Everyone dies. Pain tends to isolate us, first by telling us we’re the exception, and then by telling us to hide. The way forward is almost always toward other people: to let someone in, and to reach out to someone else who is hurting.</p>
+</div></section>
+<section class="card" data-label="Preface"><div class="inner"><h2>How to Read It</h2><p>You don’t need to read this book in order. Turn to the chapter that names what you’re carrying today, and leave the rest for another day. Read slowly. Linger over a single verse if it meets you. Say the truths out loud, the way the psalmist preached to his own soul:</p>
+<blockquote>
+<p>“Why are you cast down, O my soul, and why are you in turmoil within me? Hope in God; for I shall again praise him, my salvation and my God.”</p><cite>Psalm 42:5</cite></blockquote>
+<p>And if a chapter doesn’t seem to help on a given day, that’s all right. The truth doesn’t depend on our feeling it. Come back to it another day.</p>
+<p>These reflections were written in a season of my own aches, as I brought them, one by one, to the Lord. They are not the words of someone on the far side of pain. They are the words of a fellow traveller, who found that God’s Word reaches places nothing else can.</p>
+</div></section>
+<section class="card" data-label="Preface"><div class="inner"><h2>Not Forever</h2><p>Everyone aches. But the ache has an end, and we don’t have to arrange it. The God who has carried every pain in this book, in the body of His Son, has promised a day when there will be no more.</p>
+<blockquote>
+<p>“He will wipe away every tear from their eyes, and death shall be no more, neither shall there be mourning, nor crying, nor pain anymore, for the former things have passed away.”</p><cite>Revelation 21:4</cite></blockquote>
+<p>Until then, may these pages help you carry what you carry, and remind you that you don’t carry it alone.</p>
+</div></section>
+<section class="card" data-label="1 · He Cares for You"><div class="inner"><div class="opener"><p class="kicker">Chapter 1</p><h1>He Cares for You</h1><p class="sub">For the anxious Christian</p></div><p>Anxiety is a skilled preacher. It knows which sermon to preach on a bad day: <em>you’ve let God down again. He must be tired of you. Everyone else has it together. You’re one mistake away from losing it all.</em></p>
+<p>The usual advice is to look on the bright side. But we can’t out-think a lie with a mood. We need something truer.</p>
+<p>So here are some better truths. Not positive thinking, but things God has actually said, and that remain true whether or not we feel them today.</p>
+</div></section>
+<section class="card" data-label="1 · He Cares for You"><div class="inner"><h2>1. On Our Best and Worst Days, We Are God&#x27;s Children</h2><p><strong>The anxious thought:</strong> <em>A day like today must surely have cost me my place.</em></p>
+<p><strong>The better truth:</strong> Our standing with God doesn’t rise and fall with our performance. Children don’t stop being children on the days they misbehave. We were adopted, and adoption is a legal, settled status, not a mood.</p>
+<blockquote>
+<p>“See what kind of love the Father has given to us, that we should be called children of God; and so we are.”</p><cite>1 John 3:1</cite></blockquote>
+<blockquote>
+<p>“The Spirit himself bears witness with our spirit that we are children of God.”</p><cite>Romans 8:16</cite></blockquote>
+</div></section>
+<section class="card" data-label="1 · He Cares for You"><div class="inner"><h2>2. God Will Never Be Disappointed in Us</h2><p><strong>The anxious thought:</strong> <em>He expected better of me.</em></p>
+<p><strong>The better truth:</strong> Disappointment is what happens when someone’s expectations are let down. But God has never had a false expectation of us. He knew every one of our failures before He saved us, and He saved us anyway.</p>
+<p>That doesn’t mean sin doesn’t matter to Him. He is holy, and He hates sin; Scripture even warns us not to “grieve the Holy Spirit of God” (Ephesians 4:30). But God’s grief isn’t like ours. He is never caught off guard, overwhelmed or thrown off balance by what we do. His displeasure at sin is the settled, steady response of a Father who already knew, and who has already dealt with it at the cross. That is very different from the disappointment of someone who thought we were better than we are.</p>
+<blockquote>
+<p>“As a father shows compassion to his children, so the LORD shows compassion to those who fear him. For he knows our frame; he remembers that we are dust.”</p><cite>Psalm 103:13–14</cite></blockquote>
+<blockquote>
+<p>“But God shows his love for us in that while we were still sinners, Christ died for us.”</p><cite>Romans 5:8</cite></blockquote>
+</div></section>
+<section class="card" data-label="1 · He Cares for You"><div class="inner"><h2>3. Jesus Is a Brother Who Sticks Closer Than the Best of Friends</h2><p><strong>The anxious thought:</strong> <em>If people really knew me, they’d leave.</em></p>
+<p><strong>The better truth:</strong> Jesus knows us completely, and He isn’t ashamed of us. He calls us His brothers and sisters, and His friends. Human friendships, even good ones, can fade or fail. His won’t.</p>
+<blockquote>
+<p>“There is a friend who sticks closer than a brother.”</p><cite>Proverbs 18:24</cite></blockquote>
+<blockquote>
+<p>“He is not ashamed to call them brothers.”</p><cite>Hebrews 2:11</cite></blockquote>
+<blockquote>
+<p>“No longer do I call you servants… but I have called you friends.”</p><cite>John 15:15</cite></blockquote>
+</div></section>
+<section class="card" data-label="1 · He Cares for You"><div class="inner"><h2>4. The Holy Spirit Is Our Comforter</h2><p><strong>The anxious thought:</strong> <em>I’m alone in this, and I don’t even know how to pray about it.</em></p>
+<p><strong>The better truth:</strong> God has not left us to manage our anxiety by ourselves. He has given us His own Spirit to live in us, to help us, and even to pray for us when we have no words left.</p>
+<blockquote>
+<p>“And I will ask the Father, and he will give you another Helper, to be with you forever.”</p><cite>John 14:16</cite></blockquote>
+<blockquote>
+<p>“Likewise the Spirit helps us in our weakness. For we do not know what to pray for as we ought, but the Spirit himself intercedes for us with groanings too deep for words.”</p><cite>Romans 8:26</cite></blockquote>
+</div></section>
+<section class="card" data-label="1 · He Cares for You"><div class="inner"><h2>5. Even If We Have Failed, We Are Not Failures</h2><p><strong>The anxious thought:</strong> <em>I failed, so I am a failure.</em></p>
+<p><strong>The better truth:</strong> Failing is something we did. It isn’t who we are. Scripture doesn’t describe the righteous as people who never fall, but as people who get back up.</p>
+<p>Peter denied Jesus three times, at the very moment it mattered most. Jesus didn’t write him off. He met him on a beach, cooked him breakfast, and restored him three times over (John 21:15–17).</p>
+<blockquote>
+<p>“For the righteous falls seven times and rises again.”</p><cite>Proverbs 24:16</cite></blockquote>
+</div></section>
+<section class="card" data-label="1 · He Cares for You"><div class="inner"><h2>6. God Chose, Chooses, and Will Keep Choosing Us</h2><p><strong>The anxious thought:</strong> <em>What if He changes His mind?</em></p>
+<p><strong>The better truth:</strong> God didn’t choose us because of the value of our merits, so He won’t un-choose us because of our lack of them. He chose us because of the goodness of His own character, and His character doesn’t change.</p>
+<blockquote>
+<p>“It was not because you were more in number than any other people that the LORD set his love on you and chose you… but it is because the LORD loves you.”</p><cite>Deuteronomy 7:7–8</cite></blockquote>
+<blockquote>
+<p>“Even as he chose us in him before the foundation of the world… In love he predestined us for adoption to himself as sons through Jesus Christ, according to the purpose of his will.”</p><cite>Ephesians 1:4–5</cite></blockquote>
+<blockquote>
+<p>“And I am sure of this, that he who began a good work in you will bring it to completion at the day of Jesus Christ.”</p><cite>Philippians 1:6</cite></blockquote>
+</div></section>
+<section class="card" data-label="1 · He Cares for You"><div class="inner"><h2>7. We Are Held by His Grip, Not Ours</h2><p><strong>The anxious thought:</strong> <em>What if my faith isn’t strong enough to hold on, or something eventually comes between me and God?</em></p>
+<p><strong>The better truth:</strong> Our security doesn’t depend on the strength of our grip on God. It depends on His grip on us, and nothing can pry us out of His hand.</p>
+<blockquote>
+<p>“I give them eternal life, and they will never perish, and no one will snatch them out of my hand.”</p><cite>John 10:28</cite></blockquote>
+<p>Weak faith is still faith. Jesus never turned away the man who could only pray this:</p>
+<blockquote>
+<p>“I believe; help my unbelief!”</p><cite>Mark 9:24</cite></blockquote>
+<p>And nothing outside us can break His hold either. Paul lists everything he can think of, from death to the future to anything in all creation, and rules out every one.</p>
+<blockquote>
+<p>“For I am sure that neither death nor life, nor angels nor rulers, nor things present nor things to come, nor powers, nor height nor depth, nor anything else in all creation, will be able to separate us from the love of God in Christ Jesus our Lord.”</p><cite>Romans 8:38–39</cite></blockquote>
+</div></section>
+<section class="card" data-label="1 · He Cares for You"><div class="inner"><h2>8. He Wants Our Anxieties, One Day at a Time</h2><p><strong>The anxious thought:</strong> <em>I shouldn’t bother God with this again. And how will I cope with everything that’s coming?</em></p>
+<p><strong>The better truth:</strong> God doesn’t merely tolerate our worries. He invites them, every time, because He cares for us. We don’t need to tidy them up first.</p>
+<blockquote>
+<p>“Casting all your anxieties on him, because he cares for you.”</p><cite>1 Peter 5:7</cite></blockquote>
+<blockquote>
+<p>“Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus.”</p><cite>Philippians 4:6–7</cite></blockquote>
+<p>And we only need to hand Him today’s. We aren’t asked to carry next month today. God gives grace a day at a time, and tomorrow’s grace will arrive with tomorrow.</p>
+<blockquote>
+<p>“Therefore do not be anxious about tomorrow, for tomorrow will be anxious for itself. Sufficient for the day is its own trouble.”</p><cite>Matthew 6:34</cite></blockquote>
+</div></section>
+<section class="card" data-label="1 · He Cares for You"><div class="inner"><h2>9. God Rejoices Over Us</h2><p><strong>The anxious thought:</strong> <em>At best, God puts up with me.</em></p>
+<p><strong>The better truth:</strong> God doesn’t just put up with His children. He delights in us. He sings over us. And with His love, He quiets us.</p>
+<blockquote>
+<p>“The LORD your God is in your midst, a mighty one who will save; he will rejoice over you with gladness; he will quiet you by his love; he will exult over you with loud singing.”</p><cite>Zephaniah 3:17</cite></blockquote>
+</div></section>
+<section class="card" data-label="1 · He Cares for You"><div class="inner"><h2>10. Everyone Gets Anxious</h2><p><strong>The anxious thought:</strong> <em>Everyone else seems so calm. I’m the only one who worries like this.</em></p>
+<p><strong>The better truth:</strong> Anxiety tells us we’re the odd one out, and then it tells us to keep quiet about it. But everyone gets anxious. Just as it frees us to realise that everyone aches, it frees us to realise this. Even the apostle Paul, who wrote “do not be anxious about anything”, was honest about his own inner turmoil.</p>
+<blockquote>
+<p>“For even when we came into Macedonia, our bodies had no rest, but we were afflicted at every turn—fighting without and fear within.”</p><cite>2 Corinthians 7:5</cite></blockquote>
+<blockquote>
+<p>“And, apart from other things, there is the daily pressure on me of my anxiety for all the churches.”</p><cite>2 Corinthians 11:28</cite></blockquote>
+<p>The calm faces around us are often carrying worries of their own. And because everyone gets anxious, we don’t have to carry ours alone, or let others carry theirs alone. We can tell one trusted friend what’s weighing on us. We can ask someone how they’re really doing, and wait for the real answer.</p>
+<blockquote>
+<p>“Therefore encourage one another and build one another up, just as you are doing.”</p><cite>1 Thessalonians 5:11</cite></blockquote>
+<p>Often, the courage to admit our own anxiety is exactly what gives someone else permission to admit theirs.</p>
+</div></section>
+<section class="card" data-label="1 · He Cares for You"><div class="inner"><h2>Preaching Back</h2><p>Anxiety won’t stop preaching. So we preach back.</p>
+<p>The psalmist did exactly that. He didn’t wait for his feelings to change before speaking truth to them. He spoke to his own soul first:</p>
+<blockquote>
+<p>“Why are you cast down, O my soul, and why are you in turmoil within me? Hope in God; for I shall again praise him, my salvation and my God.”</p><cite>Psalm 42:5</cite></blockquote>
+<p>The next time anxiety starts its sermon, let’s pick one of these truths and say it out loud. We may not feel it straight away. But it will still be true, and it is better than anything anxiety has to say.</p>
+</div></section>
+<section class="card" data-label="2 · Greater Than Our Hearts"><div class="inner"><div class="opener"><p class="kicker">Chapter 2</p><h1>Greater Than Our Hearts</h1><p class="sub">For the guilty conscience</p></div><p>Some of us have repented, sincerely and specifically, and we still can’t shake the guilt. The sin is confessed. The forgiveness is promised. And yet the courtroom in our heart keeps sitting, calling the same witnesses and handing down the same sentence: <em>you should have known better. You can’t undo it. You don’t get to feel clean.</em></p>
+<p>That lingering guilt often passes itself off as humility. It feels like taking sin seriously. But when guilt outlives forgiveness, it is no longer conviction. It is condemnation, and condemnation does not come from God.</p>
+<p>So here are some biblical truths for the guilty conscience. They don’t ask us to pretend we never sinned. They tell us what God has already done about it.</p>
+</div></section>
+<section class="card" data-label="2 · Greater Than Our Hearts"><div class="inner"><h2>1. Conviction Draws Us to God; Condemnation Drives Us from Him</h2><p><strong>The accusing thought:</strong> <em>If I still feel this bad, God must still be holding it against me.</em></p>
+<p><strong>The verdict:</strong> There are two kinds of sorrow over sin, and they end in different places.</p>
+<blockquote>
+<p>“For godly grief produces a repentance that leads to salvation without regret, whereas worldly grief produces death.”</p><cite>2 Corinthians 7:10</cite></blockquote>
+<p>Godly sorrow leads us to God, to confession, and then to freedom. David knew the whole journey: the guilt that weighed on him while he kept silent, and the relief that came the moment he spoke.</p>
+<blockquote>
+<p>“I acknowledged my sin to you, and I did not cover my iniquity; I said, ‘I will confess my transgressions to the LORD,’ and you forgave the iniquity of my sin.”</p><cite>Psalm 32:5</cite></blockquote>
+<p>Worldly sorrow does the opposite. It circles back to ourselves and leaves us there. So here is a simple test: does this guilt move us toward God, or away from Him?</p>
+</div></section>
+<section class="card" data-label="2 · Greater Than Our Hearts"><div class="inner"><h2>2. Confessed Sin Is Forgiven Sin</h2><p><strong>The accusing thought:</strong> <em>Maybe I didn’t confess it properly.</em></p>
+<p><strong>The verdict:</strong> Forgiveness doesn’t depend on the quality of our confession. It depends on the faithfulness of the One who forgives.</p>
+<blockquote>
+<p>“If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness.”</p><cite>1 John 1:9</cite></blockquote>
+<p>Notice whose faithfulness that verse rests on. Not ours. So we don’t need to confess the same sin again and again until it feels forgiven. It was forgiven the first time, and it was sent further away than we could ever chase it.</p>
+<blockquote>
+<p>“As far as the east is from the west, so far does he remove our transgressions from us.”</p><cite>Psalm 103:12</cite></blockquote>
+</div></section>
+<section class="card" data-label="2 · Greater Than Our Hearts"><div class="inner"><h2>3. God Is Greater Than Our Hearts</h2><p><strong>The accusing thought:</strong> <em>I know what I did. My heart won’t let me forget it.</em></p>
+<p><strong>The verdict:</strong> Our hearts are not the final court.</p>
+<blockquote>
+<p>“By this we shall know that we are of the truth and reassure our heart before him; for whenever our heart condemns us, God is greater than our heart, and he knows everything.”</p><cite>1 John 3:19–20</cite></blockquote>
+<p>When our hearts condemn us, God overrules them, and He does it with complete knowledge. He isn’t forgiving us because He missed something. He knows everything, and He forgave us anyway. To keep condemning ourselves is to set our own hearts up as a higher court than His.</p>
+</div></section>
+<section class="card" data-label="2 · Greater Than Our Hearts"><div class="inner"><h2>4. There Is No Longer Any Offering for Sin</h2><p><strong>The accusing thought:</strong> <em>I need to feel bad for a while. It’s the least I can do.</em></p>
+<p><strong>The verdict:</strong> Self-punishment is an attempt to pay for something already paid.</p>
+<blockquote>
+<p>“Then he adds, ‘I will remember their sins and their lawless deeds no more.’ Where there is forgiveness of these, there is no longer any offering for sin.”</p><cite>Hebrews 10:17–18</cite></blockquote>
+<p>Every day we spend condemning ourselves is another sacrifice offered on top of the one that was enough. But the debt wasn’t reduced, leaving us to cover the rest. It was cancelled outright.</p>
+<blockquote>
+<p>“…by canceling the record of debt that stood against us with its legal demands. This he set aside, nailing it to the cross.”</p><cite>Colossians 2:14</cite></blockquote>
+<p>There is nothing left on the record for our guilt to pay off.</p>
+</div></section>
+<section class="card" data-label="2 · Greater Than Our Hearts"><div class="inner"><h2>5. The Judge Is the One Who Justifies</h2><p><strong>The accusing thought:</strong> <em>Someone has to hold me accountable.</em></p>
+<p><strong>The verdict:</strong> Someone did. Christ bore the full weight of our sin, so that the righteousness of God could be counted to us.</p>
+<blockquote>
+<p>“For our sake he made him to be sin who knew no sin, so that in him we might become the righteousness of God.”</p><cite>2 Corinthians 5:21</cite></blockquote>
+<p>Because of that exchange, the case against us is closed.</p>
+<blockquote>
+<p>“There is therefore now no condemnation for those who are in Christ Jesus.”</p><cite>Romans 8:1</cite></blockquote>
+<p>And if anyone tries to reopen it, Paul asks who would even have the standing to do so. The only One with the right to condemn us is the One who died for us, and He is praying for us right now.</p>
+<blockquote>
+<p>“Who shall bring any charge against God’s elect? It is God who justifies. Who is to condemn? Christ Jesus is the one who died—more than that, who was raised—who is at the right hand of God, who indeed is interceding for us.”</p><cite>Romans 8:33–34</cite></blockquote>
+</div></section>
+<section class="card" data-label="2 · Greater Than Our Hearts"><div class="inner"><h2>6. God Chooses Not to Remember</h2><p><strong>The accusing thought:</strong> <em>I keep remembering it, so God must too.</em></p>
+<p><strong>The verdict:</strong> God doesn’t forget the way we forget. He chooses not to hold our sins against us, ever again, and He does it for His own sake.</p>
+<blockquote>
+<p>“I, I am he who blots out your transgressions for my own sake, and I will not remember your sins.”</p><cite>Isaiah 43:25</cite></blockquote>
+<p>Micah pictures it even more vividly: our sins aren’t filed away for later. They’re trampled and thrown into the sea.</p>
+<blockquote>
+<p>“He will again have compassion on us; he will tread our iniquities underfoot. You will cast all our sins into the depths of the sea.”</p><cite>Micah 7:19</cite></blockquote>
+<p>If He has decided not to bring it up, we don’t need to keep bringing it up to Him.</p>
+</div></section>
+<section class="card" data-label="2 · Greater Than Our Hearts"><div class="inner"><h2>7. Our Accuser Is Not Our Judge</h2><p><strong>The accusing thought:</strong> <em>But everything this voice says about me is true.</em></p>
+<p><strong>The verdict:</strong> In Zechariah’s vision, Joshua the high priest stands in filthy garments, with Satan beside him, ready to accuse.</p>
+<blockquote>
+<p>“Then he showed me Joshua the high priest standing before the angel of the LORD, and Satan standing at his right hand to accuse him. And the LORD said to Satan, ‘The LORD rebuke you, O Satan!’”</p><cite>Zechariah 3:1–2</cite></blockquote>
+<p>Joshua doesn’t argue. He doesn’t need to. The Lord answers the accuser, and then the Lord changes his clothes.</p>
+<blockquote>
+<p>“Behold, I have taken your iniquity away from you, and I will clothe you with pure vestments.”</p><cite>Zechariah 3:4</cite></blockquote>
+<p>The accusation may be accurate about the past. It has no authority over the verdict. And one day, the accuser will be silenced for good.</p>
+<blockquote>
+<p>“For the accuser of our brothers has been thrown down, who accuses them day and night before our God.”</p><cite>Revelation 12:10</cite></blockquote>
+</div></section>
+<section class="card" data-label="2 · Greater Than Our Hearts"><div class="inner"><h2>8. A Cleansed Conscience Is for Drawing Near</h2><p><strong>The accusing thought:</strong> <em>I should keep my distance from God until I feel clean.</em></p>
+<p><strong>The verdict:</strong> Christ didn’t cleanse our conscience so that we could feel better about ourselves at a distance.</p>
+<blockquote>
+<p>“How much more will the blood of Christ, who through the eternal Spirit offered himself without blemish to God, purify our conscience from dead works to serve the living God.”</p><cite>Hebrews 9:14</cite></blockquote>
+<p>He cleansed it so that we could serve Him freely, and so that we could come close, not cautiously, but with full assurance.</p>
+<blockquote>
+<p>“Let us draw near with a true heart in full assurance of faith, with our hearts sprinkled clean from an evil conscience and our bodies washed with pure water.”</p><cite>Hebrews 10:22</cite></blockquote>
+</div></section>
+<section class="card" data-label="2 · Greater Than Our Hearts"><div class="inner"><h2>9. Forgiven People Are Restored, Not on Probation</h2><p><strong>The accusing thought:</strong> <em>Even if God forgives me, He’ll never trust me again.</em></p>
+<p><strong>The verdict:</strong> Peter denied Jesus three times. After the resurrection, Jesus didn’t put him on probation. He asked him three times whether he loved Him, once for each denial.</p>
+<blockquote>
+<p>“He said to him the third time, ‘Simon, son of John, do you love me?’ Peter was grieved because he said to him the third time, ‘Do you love me?’ and he said to him, ‘Lord, you know everything; you know that I love you.’ Jesus said to him, ‘Feed my sheep.’”</p><cite>John 21:17</cite></blockquote>
+<p>And then He gave him work to do. Forgiveness in Christ doesn’t just clear the record. It restores us to the work.</p>
+</div></section>
+<section class="card" data-label="2 · Greater Than Our Hearts"><div class="inner"><h2>10. Everyone Is Weak</h2><p><strong>The accusing thought:</strong> <em>I’ve done it again. I should know better by now.</em></p>
+<p><strong>The verdict:</strong> We probably do know better. But knowing better has never been enough to make anyone do better. Paul knew better too.</p>
+<blockquote>
+<p>“For I do not do the good I want, but the evil I do not want is what I keep on doing… Wretched man that I am! Who will deliver me from this body of death? Thanks be to God through Jesus Christ our Lord!”</p><cite>Romans 7:19, 24–25</cite></blockquote>
+<p>His answer wasn’t to try harder at knowing. It was to thank God for Jesus.</p>
+<p>The extra sting of a repeated sin is often wounded pride: <em>I thought I was beyond this.</em> But no one is. Everyone is weak. Just as it frees us to realise that everyone aches, it frees us to realise that everyone falls. And God is never surprised when we do. He knew about the second fall before He forgave the first, and His mercy isn’t a single ration for a lifetime.</p>
+<blockquote>
+<p>“The steadfast love of the LORD never ceases; his mercies never come to an end; they are new every morning; great is your faithfulness.”</p><cite>Lamentations 3:22–23</cite></blockquote>
+<p>So when we fall again, we keep the sorrow short and the response wise. We confess the new sin, not the old one, knowing that we have someone who never tires of our case.</p>
+<blockquote>
+<p>“My little children, I am writing these things to you so that you may not sin. But if anyone does sin, we have an advocate with the Father, Jesus Christ the righteous.”</p><cite>1 John 2:1</cite></blockquote>
+<p>We notice what came before the fall, and we bring it into the light with someone we trust, because a pattern loses its grip in the light in a way that self-reproach never manages. And we get back up, because getting back up is what marks the righteous.</p>
+<blockquote>
+<p>“For the righteous falls seven times and rises again.”</p><cite>Proverbs 24:16</cite></blockquote>
+<p>Our weakness isn’t the end of the story. It is the very place His strength shows up.</p>
+<blockquote>
+<p>“But he said to me, ‘My grace is sufficient for you, for my power is made perfect in weakness.’”</p><cite>2 Corinthians 12:9</cite></blockquote>
+</div></section>
+<section class="card" data-label="2 · Greater Than Our Hearts"><div class="inner"><h2>Preaching the Verdict</h2><p>Our feelings will often lag behind the verdict. That doesn’t make the verdict uncertain. It means our hearts are still catching up.</p>
+<p>So when the old accusation returns, we don’t reopen the case. We answer it with what God has already said: <em>God is greater than my heart. This is paid. I will not offer for it again.</em> And then we turn to the work in front of us, the way Paul did.</p>
+<blockquote>
+<p>“But one thing I do: forgetting what lies behind and straining forward to what lies ahead, I press on toward the goal for the prize of the upward call of God in Christ Jesus.”</p><cite>Philippians 3:13–14</cite></blockquote>
+<p>The courtroom can be dismissed. The Judge has already ruled, and He ruled in our favour.</p>
+</div></section>
+<section class="card" data-label="3 · Not Ashamed of Us"><div class="inner"><div class="opener"><p class="kicker">Chapter 3</p><h1>Not Ashamed of Us</h1><p class="sub">For the ashamed heart</p></div><p>Guilt and shame often arrive together, but they say different things. Guilt says, <em>I did something wrong.</em> Shame says, <em>I am something wrong.</em> Guilt points at an act. Shame points at the self, and then tells us to hide it.</p>
+<p>That is why forgiveness alone doesn’t always quiet shame. We can know our sins are forgiven and still feel unfit to be seen: too broken, too weak, too much, not enough. Guilt needs a pardon. Shame needs something more. It needs to be covered, welcomed and honoured.</p>
+<p>And that is exactly what God does. So here are some biblical truths for the ashamed heart.</p>
+</div></section>
+<section class="card" data-label="3 · Not Ashamed of Us"><div class="inner"><h2>1. God Covers What We Try to Hide</h2><p><strong>The shaming thought:</strong> <em>If anyone saw the real me, they’d turn away.</em></p>
+<p><strong>The better truth:</strong> Shame is as old as the first sin. Before the fall, there was nothing to hide.</p>
+<blockquote>
+<p>“And the man and his wife were both naked and were not ashamed.”</p><cite>Genesis 2:25</cite></blockquote>
+<p>After the fall, the first thing Adam and Eve did was cover themselves, and the second was hide from God.</p>
+<blockquote>
+<p>“I heard the sound of you in the garden, and I was afraid, because I was naked, and I hid myself.”</p><cite>Genesis 3:10</cite></blockquote>
+<p>Their fig leaves couldn’t cover them, and neither can ours. Our hiding, our performing, our careful self-presentation all wear thin. But God didn’t leave them exposed. He came looking for them, and He clothed them Himself.</p>
+<blockquote>
+<p>“And the LORD God made for Adam and for his wife garments of skins and clothed them.”</p><cite>Genesis 3:21</cite></blockquote>
+<p>The God we hide from is the God who covers us.</p>
+</div></section>
+<section class="card" data-label="3 · Not Ashamed of Us"><div class="inner"><h2>2. We Are Not What We Did</h2><p><strong>The shaming thought:</strong> <em>This is just who I am.</em></p>
+<p><strong>The better truth:</strong> Shame takes what we did and makes it our name. But in Christ, our past doesn’t get the final word on our identity. Paul could list the sins of the Corinthians and then say, in the past tense, that this is who they <em>were</em>.</p>
+<blockquote>
+<p>“And such were some of you. But you were washed, you were sanctified, you were justified in the name of the Lord Jesus Christ and by the Spirit of our God.”</p><cite>1 Corinthians 6:11</cite></blockquote>
+<p>Something new has happened to us, and it is more true about us than anything we have done.</p>
+<blockquote>
+<p>“Therefore, if anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come.”</p><cite>2 Corinthians 5:17</cite></blockquote>
+</div></section>
+<section class="card" data-label="3 · Not Ashamed of Us"><div class="inner"><h2>3. Jesus Carried Our Shame</h2><p><strong>The shaming thought:</strong> <em>My shame is mine to carry.</em></p>
+<p><strong>The better truth:</strong> The cross wasn’t only an execution. It was a public humiliation: stripped, mocked, and hung up for all to see. Jesus didn’t only bear our guilt there. He bore our shame.</p>
+<blockquote>
+<p>“He was despised and rejected by men, a man of sorrows and acquainted with grief; and as one from whom men hide their faces he was despised.”</p><cite>Isaiah 53:3</cite></blockquote>
+<p>He knew exactly what it cost, and He went through it anyway, because of the joy on the other side. Part of that joy was us.</p>
+<blockquote>
+<p>“…who for the joy that was set before him endured the cross, despising the shame, and is seated at the right hand of the throne of God.”</p><cite>Hebrews 12:2</cite></blockquote>
+<p>If He has already carried it, we don’t have to.</p>
+</div></section>
+<section class="card" data-label="3 · Not Ashamed of Us"><div class="inner"><h2>4. He Is Not Ashamed of Us</h2><p><strong>The shaming thought:</strong> <em>God might love me, but He must be embarrassed by me.</em></p>
+<p><strong>The better truth:</strong> Of all the things Scripture could have said here, it says this: Jesus is not ashamed to call us family.</p>
+<blockquote>
+<p>“For he who sanctifies and those who are sanctified all have one source. That is why he is not ashamed to call them brothers.”</p><cite>Hebrews 2:11</cite></blockquote>
+<p>And it isn’t only the Son. The Father, too, is glad to have His name attached to ours.</p>
+<blockquote>
+<p>“Therefore God is not ashamed to be called their God, for he has prepared for them a city.”</p><cite>Hebrews 11:16</cite></blockquote>
+<p>We may be ashamed of ourselves. He isn’t ashamed of us.</p>
+</div></section>
+<section class="card" data-label="3 · Not Ashamed of Us"><div class="inner"><h2>5. We Are Clothed in Christ</h2><p><strong>The shaming thought:</strong> <em>I don’t have anything fit to wear before God.</em></p>
+<p><strong>The better truth:</strong> We don’t need to sew our own fig leaves. God has already dressed us, and not in rags, but in salvation and righteousness.</p>
+<blockquote>
+<p>“I will greatly rejoice in the LORD; my soul shall exult in my God, for he has clothed me with the garments of salvation; he has covered me with the robe of righteousness.”</p><cite>Isaiah 61:10</cite></blockquote>
+<p>In fact, what covers us is Christ Himself. When God looks at us, He sees us wearing His Son.</p>
+<blockquote>
+<p>“For as many of you as were baptized into Christ have put on Christ.”</p><cite>Galatians 3:27</cite></blockquote>
+</div></section>
+<section class="card" data-label="3 · Not Ashamed of Us"><div class="inner"><h2>6. Jesus Touches What Others Avoid</h2><p><strong>The shaming thought:</strong> <em>I’m untouchable.</em></p>
+<p><strong>The better truth:</strong> A leper was the most shamed person in his society: unclean, cut off, and required to warn others away. When one came to Jesus, Jesus could have healed him with a word. Instead, He touched him first.</p>
+<blockquote>
+<p>“Moved with pity, he stretched out his hand and touched him and said to him, ‘I will; be clean.’”</p><cite>Mark 1:41</cite></blockquote>
+<p>A woman who had been bleeding for twelve years, unclean and unseen, tried to touch His garment and slip away unnoticed. Jesus wouldn’t let her leave in secret. He stopped, found her in the crowd, and gave her a new name in front of everyone.</p>
+<blockquote>
+<p>“And he said to her, ‘Daughter, your faith has made you well; go in peace, and be healed of your disease.’”</p><cite>Mark 5:34</cite></blockquote>
+<p>Shame pushes us to the edges. Jesus brings us back in.</p>
+</div></section>
+<section class="card" data-label="3 · Not Ashamed of Us"><div class="inner"><h2>7. The Father Runs to Us</h2><p><strong>The shaming thought:</strong> <em>I’m no longer worthy to be called His child.</em></p>
+<p><strong>The better truth:</strong> That was the prodigal son’s rehearsed speech, almost word for word. He planned to come home as a servant. But his father saw him from far off and did something no dignified father in that culture would do: he ran.</p>
+<blockquote>
+<p>“But while he was still a long way off, his father saw him and felt compassion, and ran and embraced him and kissed him.”</p><cite>Luke 15:20</cite></blockquote>
+<p>The son began his speech. The father didn’t let him finish it. He called for the best robe instead.</p>
+<blockquote>
+<p>“And the son said to him, ‘Father, I have sinned against heaven and before you. I am no longer worthy to be called your son.’ But the father said to his servants, ‘Bring quickly the best robe, and put it on him, and put a ring on his hand, and shoes on his feet.’”</p><cite>Luke 15:21–22</cite></blockquote>
+<p>Our shame says <em>servant</em>. Our Father says <em>son</em>.</p>
+</div></section>
+<section class="card" data-label="3 · Not Ashamed of Us"><div class="inner"><h2>8. God Doesn&#x27;t See as Others See</h2><p><strong>The shaming thought:</strong> <em>Everyone else measures up. I don’t.</em></p>
+<p><strong>The better truth:</strong> Much of our shame comes from comparison: not strong enough, not successful enough, not enough like the people around us. But God doesn’t grade us on the scale that others use.</p>
+<blockquote>
+<p>“For the LORD sees not as man sees: man looks on the outward appearance, but the LORD looks on the heart.”</p><cite>1 Samuel 16:7</cite></blockquote>
+<p>And we aren’t accepted because we’ve finally measured up. We’re accepted because we’re in the One who already does.</p>
+<blockquote>
+<p>“…to the praise of his glorious grace, with which he has blessed us in the Beloved.”</p><cite>Ephesians 1:6</cite></blockquote>
+</div></section>
+<section class="card" data-label="3 · Not Ashamed of Us"><div class="inner"><h2>9. Shame Loses Its Grip in the Light</h2><p><strong>The shaming thought:</strong> <em>If I keep it hidden, at least no one will know.</em></p>
+<p><strong>The better truth:</strong> Shame grows in hiding. It tells us that secrecy keeps us safe, when secrecy is what keeps shame alive. But there is no darkness deep enough to hide us from God, and we don’t need one, because the One who sees everything is the One who loves us.</p>
+<blockquote>
+<p>“If I say, ‘Surely the darkness shall cover me, and the light about me be night,’ even the darkness is not dark to you; the night is bright as the day, for darkness is as light with you.”</p><cite>Psalm 139:11–12</cite></blockquote>
+<p>To be fully known and still fully loved is the cure for shame, and it begins with God.</p>
+</div></section>
+<section class="card" data-label="3 · Not Ashamed of Us"><div class="inner"><h2>10. Everyone Has Something to Hide</h2><p><strong>The shaming thought:</strong> <em>No one else struggles like this. I need to sort myself out before I let anyone near.</em></p>
+<p><strong>The better truth:</strong> Shame isolates us twice. First it tells us we are the exception, uniquely weak or uniquely disgraceful. Then it tells us to stay away until we’ve fixed it. Scripture answers the first lie plainly.</p>
+<blockquote>
+<p>“No temptation has overtaken you that is not common to man. God is faithful, and he will not let you be tempted beyond your ability.”</p><cite>1 Corinthians 10:13</cite></blockquote>
+<p>Everyone is weak, and everyone has something they would rather keep hidden. Our weakness doesn’t set us apart from other people. It places us among them. And the lifting up that we need doesn’t happen after we rejoin people. It happens with them.</p>
+<blockquote>
+<p>“Two are better than one, because they have a good reward for their toil. For if they fall, one will lift up his fellow. But woe to him who is alone when he falls and has not another to lift him up!”</p><cite>Ecclesiastes 4:9–10</cite></blockquote>
+<p>Letting someone help carry our burden isn’t a failure. It is how the body of Christ is meant to work, and it gives them the chance to obey Him.</p>
+<blockquote>
+<p>“Bear one another’s burdens, and so fulfill the law of Christ.”</p><cite>Galatians 6:2</cite></blockquote>
+<p>So we take one small step out of hiding: we tell one trusted person, we show up even on the days shame tells us to stay home, and we let people see our ordinary weakness, not only our polished selves. Then something surprising happens. The very thing that once drove us into hiding becomes what draws us toward others who are hiding too.</p>
+<blockquote>
+<p>“…who comforts us in all our affliction, so that we may be able to comfort those who are in any affliction, with the comfort with which we ourselves are comforted by God.”</p><cite>2 Corinthians 1:4</cite></blockquote>
+</div></section>
+<section class="card" data-label="3 · Not Ashamed of Us"><div class="inner"><h2>Lifting Our Heads</h2><p>Shame makes us look down. It drops our gaze, bows our heads, and keeps our eyes off God’s face.</p>
+<p>But God doesn’t wait for us to lift our heads on our own. He does it for us.</p>
+<blockquote>
+<p>“But you, O LORD, are a shield about me, my glory, and the lifter of my head.”</p><cite>Psalm 3:3</cite></blockquote>
+<p>And He doesn’t stop at removing our shame. He promises to replace it with honour, and more than we lost.</p>
+<blockquote>
+<p>“Instead of your shame there shall be a double portion; instead of dishonor they shall rejoice in their lot.”</p><cite>Isaiah 61:7</cite></blockquote>
+<p>So the next time shame tells us to look away, we can look up instead. We will find that His face is not turned away from us.</p>
+<blockquote>
+<p>“Those who look to him are radiant, and their faces shall never be ashamed.”</p><cite>Psalm 34:5</cite></blockquote>
+</div></section>
+<section class="card" data-label="4 · Settled in a Home"><div class="inner"><div class="opener"><p class="kicker">Chapter 4</p><h1>Settled in a Home</h1><p class="sub">For the lonely heart</p></div><p>Loneliness rarely announces itself loudly. It shows up in the quiet: the empty weekend, the phone that doesn’t buzz, the room full of people where no one really knows us. And it comes with its own sermon: <em>everyone else has their people. Something must be wrong with me.</em></p>
+<p>Often, beneath that ache, is a picture of what we think we’re missing: <em>a</em> close friend, <em>an</em> inner circle, <em>a</em> spouse, a fixed slot in our life that should be filled and isn’t. As long as the slot sits empty, we feel alone, no matter how many people are around us.</p>
+<p>But Scripture paints a different picture of friendship, and a far better one of God. So here are some biblical truths for the lonely heart.</p>
+</div></section>
+<section class="card" data-label="4 · Settled in a Home"><div class="inner"><h2>1. Loneliness Is Not a Defect</h2><p><strong>The lonely thought:</strong> <em>If I feel this alone, something must be wrong with me.</em></p>
+<p><strong>The better truth:</strong> The first time God called something “not good”, it wasn’t sin. It was solitude.</p>
+<blockquote>
+<p>“Then the LORD God said, ‘It is not good that the man should be alone; I will make him a helper fit for him.’”</p><cite>Genesis 2:18</cite></blockquote>
+<p>Adam was sinless, in a perfect garden, walking with God, and still God said it was not good for him to be alone. Our longing for companionship isn’t a flaw in our design. It is part of the design. Loneliness is that good longing, aching for what it was made for.</p>
+</div></section>
+<section class="card" data-label="4 · Settled in a Home"><div class="inner"><h2>2. Jesus Knew Loneliness</h2><p><strong>The lonely thought:</strong> <em>No one understands what this feels like.</em></p>
+<p><strong>The better truth:</strong> Jesus does. On the worst night of His life, He asked His three closest friends for one thing: to stay awake with Him.</p>
+<blockquote>
+<p>“And he said to them, ‘My soul is very sorrowful, even to death. Remain here and watch.’”</p><cite>Mark 14:34</cite></blockquote>
+<p>They fell asleep. Hours later, when the soldiers came, every one of His friends abandoned Him.</p>
+<blockquote>
+<p>“And they all left him and fled.”</p><cite>Mark 14:50</cite></blockquote>
+<p>So when we bring Him our loneliness, we aren’t bringing it to someone who has only read about it. We are bringing it to someone who has felt it.</p>
+<blockquote>
+<p>“For we do not have a high priest who is unable to sympathize with our weaknesses, but one who in every respect has been tempted as we are, yet without sin.”</p><cite>Hebrews 4:15</cite></blockquote>
+</div></section>
+<section class="card" data-label="4 · Settled in a Home"><div class="inner"><h2>3. God Is the Friend Who Never Leaves</h2><p><strong>The lonely thought:</strong> <em>Eventually, everyone leaves.</em></p>
+<p><strong>The better truth:</strong> People do come and go. Even good friends move, marry, change or drift. But there is one friend who has promised never to go anywhere.</p>
+<blockquote>
+<p>“Keep your life free from love of money, and be content with what you have, for he has said, ‘I will never leave you nor forsake you.’”</p><cite>Hebrews 13:5</cite></blockquote>
+<p>And He doesn’t merely stay near us as a master tolerates a servant. He calls us His friends.</p>
+<blockquote>
+<p>“No longer do I call you servants, for the servant does not know what his master is doing; but I have called you friends, for all that I have heard from my Father I have made known to you.”</p><cite>John 15:15</cite></blockquote>
+</div></section>
+<section class="card" data-label="4 · Settled in a Home"><div class="inner"><h2>4. Only God Is Uniquely Special</h2><p><strong>The lonely thought:</strong> <em>If I could just find that one person, I wouldn’t feel like this anymore.</em></p>
+<p><strong>The better truth:</strong> We often look for one person who will be everything to us. But no human being can carry that weight, and none was ever meant to. Only God can be uniquely special to us: unchanging, irreplaceable, ours forever.</p>
+<blockquote>
+<p>“Whom have I in heaven but you? And there is nothing on earth that I desire besides you. My flesh and my heart may fail, but God is the strength of my heart and my portion forever.”</p><cite>Psalm 73:25–26</cite></blockquote>
+<p>Everyone else in our life, even the dearest, is contextually special. They are precious in their season and in their place, but they can change, and so can we. That isn’t a sad truth. It is a freeing one. When we stop asking people to be what only God can be, we are finally free to enjoy them as they are.</p>
+</div></section>
+<section class="card" data-label="4 · Settled in a Home"><div class="inner"><h2>5. Closeness Is a Gift, Not a Slot</h2><p><strong>The lonely thought:</strong> <em>I don’t have a close friend.</em></p>
+<p><strong>The better truth:</strong> What if “close friend” isn’t a slot to fill, but something that happens? Look at Jesus’ own friendships. He ministered to crowds. He sent out seventy-two.</p>
+<blockquote>
+<p>“After this the Lord appointed seventy-two others and sent them on ahead of him, two by two, into every town and place where he himself was about to go.”</p><cite>Luke 10:1</cite></blockquote>
+<p>He chose twelve to be with Him. And among the twelve, three were closer still.</p>
+<blockquote>
+<p>“And after six days Jesus took with him Peter and James and John, and led them up a high mountain by themselves.”</p><cite>Mark 9:2</cite></blockquote>
+<p>Even the Son of God had friends of differing closeness, and He loved them all. So rather than sorting people into “close” and “not close”, we can simply accept our friends as they are. Among them, some will be closer than others, and that will be a gift, not a requirement.</p>
+</div></section>
+<section class="card" data-label="4 · Settled in a Home"><div class="inner"><h2>6. Closeness Comes in Seasons</h2><p><strong>The lonely thought:</strong> <em>We used to be so close. I must have lost them for good.</em></p>
+<p><strong>The better truth:</strong> Closeness ebbs and flows, and that’s not always a failure. It is often just a season.</p>
+<blockquote>
+<p>“For everything there is a season, and a time for every matter under heaven… a time to embrace, and a time to refrain from embracing.”</p><cite>Ecclesiastes 3:1, 5</cite></blockquote>
+<p>Paul and Barnabas, partners in ministry, once parted ways over John Mark after a sharp disagreement.</p>
+<blockquote>
+<p>“And there arose a sharp disagreement, so that they separated from each other.”</p><cite>Acts 15:39</cite></blockquote>
+<p>Years later, Paul wrote this of the same Mark he had once refused to take with him:</p>
+<blockquote>
+<p>“Luke alone is with me. Get Mark and bring him with you, for he is very useful to me for ministry.”</p><cite>2 Timothy 4:11</cite></blockquote>
+<p>A friendship that grows distant in one season may grow close again in another. And if it doesn’t, the closeness it once had was still real, and still a gift.</p>
+<p>This also changes how we think about making friends. If friends naturally come and go, then friendship-making isn’t something we finish once. It is a rhythm for the whole of life. That can feel tiring, but it is also freeing: a friend who drifts away is never the end of our friendships, because new friends keep arriving, and no single friend has to carry the weight of being the one who stays.</p>
+</div></section>
+<section class="card" data-label="4 · Settled in a Home"><div class="inner"><h2>7. We Hold Friends with Open Hands</h2><p><strong>The lonely thought:</strong> <em>I need to hold on to this friend, or I’ll be alone again.</em></p>
+<p><strong>The better truth:</strong> Loneliness tempts us to cling. We grip the friends we have, need them to stay close, and grow anxious when they don’t. But clinging isn’t love. It turns a friend into a solution.</p>
+<blockquote>
+<p>“Love is patient and kind; love does not envy or boast; it is not arrogant or rude. It does not insist on its own way.”</p><cite>1 Corinthians 13:4–5</cite></blockquote>
+<p>Love seeks the good of the other person, even when their good means they are less available to us. When God is our security, we no longer need our friends to be. And they will often find it easier to come close when they aren’t being held tight.</p>
+</div></section>
+<section class="card" data-label="4 · Settled in a Home"><div class="inner"><h2>8. God Sets the Lonely in Families</h2><p><strong>The lonely thought:</strong> <em>I don’t really belong anywhere.</em></p>
+<p><strong>The better truth:</strong> God has a particular heart for the solitary, and a particular solution for them.</p>
+<blockquote>
+<p>“God settles the solitary in a home; he leads out the prisoners to prosperity.”</p><cite>Psalm 68:6</cite></blockquote>
+<p>That home is His church. Whatever we lack in natural family or old friendships, Jesus promises a family far larger than we could build on our own.</p>
+<blockquote>
+<p>“Truly, I say to you, there is no one who has left house or brothers or sisters or mother or father or children or lands, for my sake and for the gospel, who will not receive a hundredfold now in this time, houses and brothers and sisters and mothers and children and lands, with persecutions, and in the age to come eternal life.”</p><cite>Mark 10:29–30</cite></blockquote>
+<p>And yet, if we’re honest, church can still be lonely. Many of us have sat in a full service on Sunday and gone home feeling unknown. That doesn’t make the promise false. Belonging to God’s family is a status before it is a feeling: we belong whether or not we feel it yet. A Sunday crowd is where we worship together, not usually where we are known. Being known tends to happen in smaller, repeated places: a small group, a serving team, the same lunch table week after week. And many of the people around us are lonely too, quietly waiting for someone else to make the first move. The family He gives us is real, but it is made of imperfect people, and some of it is received slowly. The promise isn’t broken. It is still unfolding.</p>
+</div></section>
+<section class="card" data-label="4 · Settled in a Home"><div class="inner"><h2>9. Solitude Can Become Communion</h2><p><strong>The lonely thought:</strong> <em>Being alone is wasted time.</em></p>
+<p><strong>The better truth:</strong> Jesus sought out solitude, on purpose and often. For Him, being alone wasn’t empty. It was where He met with His Father.</p>
+<blockquote>
+<p>“But he would withdraw to desolate places and pray.”</p><cite>Luke 5:16</cite></blockquote>
+<p>Our lonely hours can become the same. The quiet that aches can also be the quiet where we hear Him. Loneliness turned toward God becomes solitude, and solitude with God becomes communion.</p>
+</div></section>
+<section class="card" data-label="4 · Settled in a Home"><div class="inner"><h2>10. Everyone Gets Lonely</h2><p><strong>The lonely thought:</strong> <em>Everyone else has their people. I’m the only one on the outside.</em></p>
+<p><strong>The better truth:</strong> Loneliness convinces us that we’re the exception. Elijah believed it too. After his greatest victory, he fled into the wilderness, sure that he alone was left.</p>
+<blockquote>
+<p>“I have been very jealous for the LORD, the God of hosts. For the people of Israel have forsaken your covenant, thrown down your altars, and killed your prophets with the sword, and I, even I only, am left, and they seek my life, to take it away.”</p><cite>1 Kings 19:10</cite></blockquote>
+<p>God’s answer gently corrected him. He was never as alone as he felt.</p>
+<blockquote>
+<p>“Yet I will leave seven thousand in Israel, all the knees that have not bowed to Baal, and every mouth that has not kissed him.”</p><cite>1 Kings 19:18</cite></blockquote>
+<p>Even David, a king surrounded by servants, soldiers and friends, prayed this:</p>
+<blockquote>
+<p>“Turn to me and be gracious to me, for I am lonely and afflicted.”</p><cite>Psalm 25:16</cite></blockquote>
+<p>Everyone gets lonely. Just as it frees us to realise that everyone aches, and that everyone is weak, it frees us to realise this. Our loneliness doesn’t mean we’re the ones left out. It means we’re human. And it means that the people around us, at church, at work, across the lunch table, are quietly hoping someone will reach out to them too.</p>
+<p>So we don’t need to wait to be wanted. We can simply show up, again and again, and be the ones who welcome.</p>
+<blockquote>
+<p>“And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, and all the more as you see the Day drawing near.”</p><cite>Hebrews 10:24–25</cite></blockquote>
+<p>Often, the cure for our loneliness turns out to be someone else’s cure as well. Somebody else in the room is lonely too.</p>
+</div></section>
+<section class="card" data-label="4 · Settled in a Home"><div class="inner"><h2>Never Alone</h2><p>Loneliness may visit us for a season, or many seasons. But it never gets the final word about our lives, because there is never a moment when we are truly alone.</p>
+<p>The last thing Jesus said to His friends before He ascended was not a command, but a promise.</p>
+<blockquote>
+<p>“And behold, I am with you always, to the end of the age.”</p><cite>Matthew 28:20</cite></blockquote>
+<p>So we can hold our friends loosely, love them freely, and keep showing up, because the one Friend who matters most will never let go of us.</p>
+</div></section>
+<section class="card" data-label="5 · Near to the Brokenhearted"><div class="inner"><div class="opener"><p class="kicker">Chapter 5</p><h1>Near to the Brokenhearted</h1><p class="sub">For the broken heart</p></div><p>Heartbreak has a particular weight. It isn’t only that we lost something. It’s that we lost something we hoped for: a person we loved, a future we pictured, a dream we carried for longer than we’d admit. And it comes with its own sermon: <em>you weren’t enough. You’ll never have this. You should never have hoped.</em></p>
+<p>Heartbreak can’t be argued away, and it shouldn’t be rushed. But it can be carried, and we don’t carry it alone.</p>
+<p>So here are some biblical truths for the broken heart.</p>
+</div></section>
+<section class="card" data-label="5 · Near to the Brokenhearted"><div class="inner"><h2>1. Heartbreak Is Grief, and Grief Is Allowed</h2><p><strong>The heartbroken thought:</strong> <em>I shouldn’t be this sad. I need to move on.</em></p>
+<p><strong>The better truth:</strong> Scripture doesn’t hurry us out of our sorrow. It makes room for it.</p>
+<blockquote>
+<p>“A time to weep, and a time to laugh; a time to mourn, and a time to dance.”</p><cite>Ecclesiastes 3:4</cite></blockquote>
+<p>Heartbreak is a form of grief, and grief is what love feels like when it loses something. Jesus Himself, standing at the tomb of a friend He was about to raise, still wept.</p>
+<blockquote>
+<p>“Jesus wept.”</p><cite>John 11:35</cite></blockquote>
+<p>If the Son of God could weep, knowing how the story would end, we are allowed to weep too.</p>
+</div></section>
+<section class="card" data-label="5 · Near to the Brokenhearted"><div class="inner"><h2>2. God Is Near to the Brokenhearted</h2><p><strong>The heartbroken thought:</strong> <em>God feels far away right now.</em></p>
+<p><strong>The better truth:</strong> Of all the places God promises to be, one of the closest is beside a broken heart.</p>
+<blockquote>
+<p>“The LORD is near to the brokenhearted and saves the crushed in spirit.”</p><cite>Psalm 34:18</cite></blockquote>
+<p>He doesn’t wait for us to recover before He comes near. He comes near <em>because</em> we are broken, and He tends to the wound Himself.</p>
+<blockquote>
+<p>“He heals the brokenhearted and binds up their wounds.”</p><cite>Psalm 147:3</cite></blockquote>
+</div></section>
+<section class="card" data-label="5 · Near to the Brokenhearted"><div class="inner"><h2>3. Heartbroken, but Not Broken</h2><p><strong>The heartbroken thought:</strong> <em>I’ve lost everything.</em></p>
+<p><strong>The better truth:</strong> Heartbreak may cost us a dream. It doesn’t cost us ourselves. Paul knew what it was to be struck hard and still stand.</p>
+<blockquote>
+<p>“We are afflicted in every way, but not crushed; perplexed, but not driven to despair; persecuted, but not forsaken; struck down, but not destroyed.”</p><cite>2 Corinthians 4:8–9</cite></blockquote>
+<p>We can grieve a lost dream without grieving our existence. These griefs are not the same. Our hearts may break, but our identity was never held in the other person’s hands. It is held in God’s, and nothing has changed there.</p>
+</div></section>
+<section class="card" data-label="5 · Near to the Brokenhearted"><div class="inner"><h2>4. God Knows Love That Isn&#x27;t Returned</h2><p><strong>The heartbroken thought:</strong> <em>No one understands what it’s like to love someone who doesn’t love you back.</em></p>
+<p><strong>The better truth:</strong> God does, more than anyone. Over and over, He loved a people who turned away. Jesus wept over a city that refused Him.</p>
+<blockquote>
+<p>“O Jerusalem, Jerusalem, the city that kills the prophets and stones those who are sent to it! How often would I have gathered your children together as a hen gathers her brood under her wings, and you were not willing!”</p><cite>Luke 13:34</cite></blockquote>
+<p>Through Hosea, God let us hear His own heart, aching over a people who wouldn’t return His love.</p>
+<blockquote>
+<p>“How can I give you up, O Ephraim? How can I hand you over, O Israel?… My heart recoils within me; my compassion grows warm and tender.”</p><cite>Hosea 11:8</cite></blockquote>
+<p>When we bring Him the ache of unreturned love, we are bringing it to someone who has felt it longer and more deeply than we ever will.</p>
+</div></section>
+<section class="card" data-label="5 · Near to the Brokenhearted"><div class="inner"><h2>5. They Were Never Meant to Be Our Saviour</h2><p><strong>The heartbroken thought:</strong> <em>They were the answer to my loneliness, and now it’s gone.</em></p>
+<p><strong>The better truth:</strong> Part of what makes heartbreak so crushing is what we quietly asked the other person to be: our cure, our security, our rescue from the ache. But no person can carry that. Only God can.</p>
+<blockquote>
+<p>“For my people have committed two evils: they have forsaken me, the fountain of living waters, and hewed out cisterns for themselves, broken cisterns that can hold no water.”</p><cite>Jeremiah 2:13</cite></blockquote>
+<p>This doesn’t make our love for them wrong. It frees it. When someone is no longer our solution, their absence still hurts, but it no longer shatters us. And we are free to love them as a person, not as a rescue.</p>
+</div></section>
+<section class="card" data-label="5 · Near to the Brokenhearted"><div class="inner"><h2>6. We Need Not Regret Having Loved</h2><p><strong>The heartbroken thought:</strong> <em>I wish I’d never let myself care.</em></p>
+<p><strong>The better truth:</strong> Love that wills another’s good is never wasted, even when it isn’t returned. It wasn’t a transaction that failed. It was a gift, freely given, and gifts don’t need to be repaid to be real.</p>
+<blockquote>
+<p>“Love bears all things, believes all things, hopes all things, endures all things. Love never ends.”</p><cite>1 Corinthians 13:7–8</cite></blockquote>
+<p>We can be in pain and still not regret, for one moment, having loved.</p>
+</div></section>
+<section class="card" data-label="5 · Near to the Brokenhearted"><div class="inner"><h2>7. Love Can Outlast Desire</h2><p><strong>The heartbroken thought:</strong> <em>If I can’t have them, I can’t be near them.</em></p>
+<p><strong>The better truth:</strong> Sometimes heartbreak asks us to lay down what we wanted from someone. But it doesn’t always ask us to stop loving them. The desire to <em>have</em> someone can give way to a simpler and stronger desire: to will their good.</p>
+<blockquote>
+<p>“Let each of you look not only to his own interests, but also to the interests of others.”</p><cite>Philippians 2:4</cite></blockquote>
+<p>That kind of love may look quieter than desire did. It gives the other person space. It lets them set the pace. It stays warm without pressing. But it is love all the same, and perhaps a purer one.</p>
+</div></section>
+<section class="card" data-label="5 · Near to the Brokenhearted"><div class="inner"><h2>8. Not Betrayed, Just Not Chosen</h2><p><strong>The heartbroken thought:</strong> <em>After everything I gave, how could they?</em></p>
+<p><strong>The better truth:</strong> Heartbreak tempts us to rewrite the other person as a villain, because anger is easier to feel than grief. But not being loved back isn’t the same as being wronged. No one owes us their heart. And love, even wounded love, refuses to keep a ledger.</p>
+<blockquote>
+<p>“It does not insist on its own way; it is not irritable or resentful.”</p><cite>1 Corinthians 13:5</cite></blockquote>
+<p>So we don’t punish them with coldness, withdraw in spite, or tell the story in a way that makes them small. We let our grief be grief, without turning it into resentment.</p>
+</div></section>
+<section class="card" data-label="5 · Near to the Brokenhearted"><div class="inner"><h2>9. God Is Doing a New Thing</h2><p><strong>The heartbroken thought:</strong> <em>That was my one chance.</em></p>
+<p><strong>The better truth:</strong> Heartbreak shrinks the future down to the thing we lost. But God is never out of chapters to write.</p>
+<blockquote>
+<p>“Remember not the former things, nor consider the things of old. Behold, I am doing a new thing; now it springs forth, do you not perceive it? I will make a way in the wilderness and rivers in the desert.”</p><cite>Isaiah 43:18–19</cite></blockquote>
+<p>We may not perceive it yet. We don’t need to. It is enough to know that the One writing our story isn’t finished, and that He is good.</p>
+</div></section>
+<section class="card" data-label="5 · Near to the Brokenhearted"><div class="inner"><h2>10. Everyone Loses Something They Love</h2><p><strong>The heartbroken thought:</strong> <em>I’ll keep this to myself until I’m over it.</em></p>
+<p><strong>The better truth:</strong> Heartbreak makes us want to hide: to put on a brave face, and to wait until we’re fine before letting anyone near. But everyone, at some point, loses something they love. Our grief doesn’t set us apart. It places us among everyone who has ever loved.</p>
+<p>When Jesus came to Mary and Martha in their grief, He didn’t stand at a distance and offer them a sermon. He wept with them.</p>
+<blockquote>
+<p>“When Jesus saw her weeping, and the Jews who had come with her also weeping, he was deeply moved in his spirit and greatly troubled.”</p><cite>John 11:33</cite></blockquote>
+<p>That is what He asks of His people too: not to fix one another’s sorrow, but to share it.</p>
+<blockquote>
+<p>“Rejoice with those who rejoice, weep with those who weep.”</p><cite>Romans 12:15</cite></blockquote>
+<p>So we let one trusted friend in. We don’t need to tell everyone everything. But a grief that is shared, even a little, is a grief that is no longer carried alone.</p>
+</div></section>
+<section class="card" data-label="5 · Near to the Brokenhearted"><div class="inner"><h2>Joy Comes with the Morning</h2><p>Heartbreak can make the night feel endless. But the night is not the whole story.</p>
+<blockquote>
+<p>“Weeping may tarry for the night, but joy comes with the morning.”</p><cite>Psalm 30:5</cite></blockquote>
+<p>And one day, there will be no more nights like this at all.</p>
+<blockquote>
+<p>“He will wipe away every tear from their eyes, and death shall be no more, neither shall there be mourning, nor crying, nor pain anymore, for the former things have passed away.”</p><cite>Revelation 21:4</cite></blockquote>
+<p>Until then, we can be heartbroken without being broken, because the One who is near to the brokenhearted is near to us.</p>
+</div></section>
+<section class="card" data-label="6 · Eternity in Our Hearts"><div class="inner"><div class="opener"><p class="kicker">Chapter 6</p><h1>Eternity in Our Hearts</h1><p class="sub">For the restless and the bored</p></div><p>Boredom doesn’t sound like a serious pain. No one sends flowers for it. But anyone who has sat through a long, flat afternoon knows it can ache: the restlessness, the emptiness, the sense that life is happening somewhere else. And it comes with its own sermon: <em>this is a waste. Find something, anything, to fill it.</em></p>
+<p>We usually treat boredom as a problem to solve as quickly as possible. But Scripture has more to say about it than we might expect, and much of it is surprisingly hopeful.</p>
+<p>So here are some biblical truths for the restless and the bored.</p>
+</div></section>
+<section class="card" data-label="6 · Eternity in Our Hearts"><div class="inner"><h2>1. Boredom Is an Ache for Eternity</h2><p><strong>The restless thought:</strong> <em>Nothing satisfies. Something must be wrong with me.</em></p>
+<p><strong>The better truth:</strong> The Preacher of Ecclesiastes felt it too: the eye never quite satisfied, the ear never quite full.</p>
+<blockquote>
+<p>“All things are full of weariness; a man cannot utter it; the eye is not satisfied with seeing, nor the ear filled with hearing.”</p><cite>Ecclesiastes 1:8</cite></blockquote>
+<p>But he also saw why.</p>
+<blockquote>
+<p>“He has made everything beautiful in its time. Also, he has put eternity into man’s heart, yet so that he cannot find out what God has done from the beginning to the end.”</p><cite>Ecclesiastes 3:11</cite></blockquote>
+<p>We are creatures made for forever, living in a world of moments. Of course nothing here fully satisfies. Boredom is part of the natural ache of a broken world, and it is a sign that our hearts were made for more than this world can give.</p>
+</div></section>
+<section class="card" data-label="6 · Eternity in Our Hearts"><div class="inner"><h2>2. We Don&#x27;t Have to Flee It</h2><p><strong>The restless thought:</strong> <em>I need to get rid of this feeling, now.</em></p>
+<p><strong>The better truth:</strong> Boredom often pushes us toward whatever is quickest: the endless scroll, the snack, the distraction, or something worse. David’s worst sin began on an idle afternoon, when he stayed home instead of going where he was meant to be.</p>
+<blockquote>
+<p>“In the spring of the year, the time when kings go out to battle, David sent Joab… But David remained at Jerusalem. It happened, late one afternoon, when David arose from his couch and was walking on the roof of the king’s house, that he saw from the roof a woman bathing.”</p><cite>2 Samuel 11:1–2</cite></blockquote>
+<p>Boredom itself isn’t sin. But fleeing it at any cost can lead us places we never meant to go. We can let the feeling be there for a while, without resenting it and without running from it.</p>
+</div></section>
+<section class="card" data-label="6 · Eternity in Our Hearts"><div class="inner"><h2>3. It&#x27;s Okay Not to Do Something</h2><p><strong>The restless thought:</strong> <em>If I’m not being productive, I’m wasting my life.</em></p>
+<p><strong>The better truth:</strong> God doesn’t measure our worth by our output. He invites us to stop.</p>
+<blockquote>
+<p>“Be still, and know that I am God.”</p><cite>Psalm 46:10</cite></blockquote>
+<p>Even Jesus called His busy disciples away from the crowds, not to a new task, but to rest.</p>
+<blockquote>
+<p>“And he said to them, ‘Come away by yourselves to a desolate place and rest a while.’ For many were coming and going, and they had no leisure even to eat.”</p><cite>Mark 6:31</cite></blockquote>
+<p>Some of our “boredom” is simply rest that we haven’t yet given ourselves permission to enjoy.</p>
+</div></section>
+<section class="card" data-label="6 · Eternity in Our Hearts"><div class="inner"><h2>4. Waiting Is Not Wasted</h2><p><strong>The restless thought:</strong> <em>I’m stuck in between. Nothing is happening.</em></p>
+<p><strong>The better truth:</strong> Some seasons feel liminal: the gap between one chapter and the next, the downtime before an adventure. But in Scripture, waiting isn’t dead time. It is where God renews us.</p>
+<blockquote>
+<p>“Wait for the LORD; be strong, and let your heart take courage; wait for the LORD!”</p><cite>Psalm 27:14</cite></blockquote>
+<blockquote>
+<p>“But they who wait for the LORD shall renew their strength; they shall mount up with wings like eagles; they shall run and not be weary; they shall walk and not faint.”</p><cite>Isaiah 40:31</cite></blockquote>
+<p>The quiet before the journey is part of the journey.</p>
+</div></section>
+<section class="card" data-label="6 · Eternity in Our Hearts"><div class="inner"><h2>5. Ordinary Days Are Holy</h2><p><strong>The restless thought:</strong> <em>My life is so mundane.</em></p>
+<p><strong>The better truth:</strong> Most of life is ordinary: chores, commutes, meals, routines. But nothing done for God is ordinary to Him.</p>
+<blockquote>
+<p>“So, whether you eat or drink, or whatever you do, do all to the glory of God.”</p><cite>1 Corinthians 10:31</cite></blockquote>
+<p>Washing the dishes, cooking a meal, driving home: all of it can be offered to Him. But what does that actually look like?</p>
+<p>It can mean doing it <em>for</em> Him, not for an audience. The dishes no one will notice can still be done well, because He sees them.</p>
+<blockquote>
+<p>“Whatever you do, work heartily, as for the Lord and not for men.”</p><cite>Colossians 3:23</cite></blockquote>
+<p>It can mean receiving it with thanks. A plain meal becomes an offering the moment we thank Him for the food, the kitchen, and the means to buy it.</p>
+<blockquote>
+<p>“For everything created by God is good, and nothing is to be rejected if it is received with thanksgiving, for it is made holy by the word of God and prayer.”</p><cite>1 Timothy 4:4–5</cite></blockquote>
+<p>It can mean doing it as love. Clean dishes serve whoever uses the kitchen next. A meal can feed a guest. Careful driving protects everyone else on the road.</p>
+<blockquote>
+<p>“Through love serve one another.”</p><cite>Galatians 5:13</cite></blockquote>
+<p>It can mean being faithful in small things: caring for the body, the home and the things He has entrusted to us.</p>
+<blockquote>
+<p>“One who is faithful in a very little is also faithful in much.”</p><cite>Luke 16:10</cite></blockquote>
+<p>And perhaps most of all, it can mean doing it <em>with</em> Him. The mundane is where unceasing prayer becomes possible. We can talk to Him over the sink: a sentence of thanks, a worry handed over, a verse from the morning turned over in the mind and connected to what’s in front of us. The chore stays the same, but we’re no longer doing it alone.</p>
+<blockquote>
+<p>“Pray without ceasing.”</p><cite>1 Thessalonians 5:17</cite></blockquote>
+<p>When the mundane is done for Someone, and with Someone, it stops being merely mundane.</p>
+</div></section>
+<section class="card" data-label="6 · Eternity in Our Hearts"><div class="inner"><h2>6. God Is Never Boring</h2><p><strong>The restless thought:</strong> <em>Even my faith feels stale.</em></p>
+<p><strong>The better truth:</strong> Often, boredom isn’t a lack of things to do. It’s a lack of wonder. And there is no end to the wonder of God.</p>
+<blockquote>
+<p>“Oh, the depth of the riches and wisdom and knowledge of God! How unsearchable are his judgments and how inscrutable his ways!”</p><cite>Romans 11:33</cite></blockquote>
+<p>David’s “one thing” wasn’t a task to complete. It was a lifetime of gazing at someone endlessly beautiful.</p>
+<blockquote>
+<p>“One thing have I asked of the LORD, that will I seek after: that I may dwell in the house of the LORD all the days of my life, to gaze upon the beauty of the LORD and to inquire in his temple.”</p><cite>Psalm 27:4</cite></blockquote>
+<p>And yet, if we’re honest, a lot of the time it doesn’t feel that way. Verses we’ve read a hundred times stop surprising us. Reading the Bible becomes a box to tick. Sometimes, for no reason we can name, the sense of wonder simply goes quiet for a season. Scripture is honest about this too. David, a man after God’s own heart, wrote:</p>
+<blockquote>
+<p>“O God, you are my God; earnestly I seek you; my soul thirsts for you; my flesh faints for you, as in a dry and weary land where there is no water.”</p><cite>Psalm 63:1</cite></blockquote>
+<p>God is never boring, but we often feel bored with Him. The dullness is in our seeing, not in Him, and our seeing can be renewed. It helps to slow down: one verse instead of three chapters, with the question, <em>what does this show me about who He is?</em> It helps to come at Scripture from a fresh angle, or to connect it to the real ache in front of us. And in the dry seasons, it helps simply to keep showing up. The wonder doesn’t depend on our feeling it, and the dry seasons do end.</p>
+</div></section>
+<section class="card" data-label="6 · Eternity in Our Hearts"><div class="inner"><h2>7. Wonder Hides in Small Things</h2><p><strong>The restless thought:</strong> <em>There’s nothing interesting around me.</em></p>
+<p><strong>The better truth:</strong> Jesus pointed bored, anxious people to the most ordinary things in sight: birds and flowers.</p>
+<blockquote>
+<p>“Look at the birds of the air: they neither sow nor reap nor gather into barns, and yet your heavenly Father feeds them… Consider the lilies of the field, how they grow: they neither toil nor spin.”</p><cite>Matthew 6:26, 28</cite></blockquote>
+<p>The world is full of His handiwork, if we slow down enough to notice it.</p>
+<blockquote>
+<p>“O LORD, how manifold are your works! In wisdom have you made them all; the earth is full of your creatures.”</p><cite>Psalm 104:24</cite></blockquote>
+<p>A sunset, a well-cooked meal, a song, a train ride: simple joys are everywhere for those who look.</p>
+</div></section>
+<section class="card" data-label="6 · Eternity in Our Hearts"><div class="inner"><h2>8. Let the Mind Wander</h2><p><strong>The restless thought:</strong> <em>My mind needs something to do.</em></p>
+<p><strong>The better truth:</strong> Some of our best thoughts arrive when we aren’t chasing them. A quiet, unhurried mind is free to wonder, to ponder, and to make connections it never would under pressure.</p>
+<blockquote>
+<p>“I will ponder all your work, and meditate on your mighty deeds.”</p><cite>Psalm 77:12</cite></blockquote>
+<p>Boredom can become meditation. We can let our thoughts wander toward God’s works and words, and see where He leads them. Sometimes, an idea we would never have found by striving arrives on its own, in the stillness.</p>
+</div></section>
+<section class="card" data-label="6 · Eternity in Our Hearts"><div class="inner"><h2>9. Contentment Is Learned</h2><p><strong>The restless thought:</strong> <em>I’ll be content when something exciting finally happens.</em></p>
+<p><strong>The better truth:</strong> “Contentment” can sound vague, so it helps to be precise. Contentment means not needing our circumstances to change in order to have enough.</p>
+<p>Paul didn’t find it by escaping dull or difficult circumstances. He learned it in them.</p>
+<blockquote>
+<p>“I have learned in whatever situation I am to be content. I know how to be brought low, and I know how to abound. In any and every circumstance, I have learned the secret of facing plenty and hunger, abundance and need.”</p><cite>Philippians 4:11–12</cite></blockquote>
+<p>The word Paul uses for “content” was a favourite of the Stoic philosophers. It meant self-sufficient: having within yourself everything you need. But Paul changes where the sufficiency comes from. Two verses later, he names it.</p>
+<blockquote>
+<p>“I can do all things through him who strengthens me.”</p><cite>Philippians 4:13</cite></blockquote>
+<p>Contentment isn’t resignation: we can still want things to change. It isn’t complacency: we can still work and grow. And it isn’t a feeling: we can be content and still bored, sad or tired. What it changes is what our peace rests on. We may still want a different afternoon, a different season, a different life. But our sense of having <em>enough</em> no longer depends on getting it, because the One who is enough is already with us.</p>
+<blockquote>
+<p>“Keep your life free from love of money, and be content with what you have, for he has said, ‘I will never leave you nor forsake you.’”</p><cite>Hebrews 13:5</cite></blockquote>
+<p>We have enough now, because we have God now. That is a secret that can be learned, one quiet afternoon at a time.</p>
+</div></section>
+<section class="card" data-label="6 · Eternity in Our Hearts"><div class="inner"><h2>10. Everyone Gets Bored</h2><p><strong>The restless thought:</strong> <em>Everyone else’s life is full and exciting. I’m the only one stuck with nothing to do.</em></p>
+<p><strong>The better truth:</strong> Boredom tends to turn us inward, and it tells us we’re the only ones feeling it. But everyone gets bored. Just as it frees us to realise that everyone aches, it frees us to realise this. The full, exciting lives we see from the outside have their long, flat afternoons too. Somebody else is having one right now. So when we’ve rested and the restlessness remains, it may be an invitation to reach out.</p>
+<blockquote>
+<p>“So then, as we have opportunity, let us do good to everyone, and especially to those who are of the household of faith.”</p><cite>Galatians 6:10</cite></blockquote>
+<p>An empty afternoon is an opportunity: to message a friend we haven’t spoken to in a while, to invite someone over, to cook a little extra and share it.</p>
+<blockquote>
+<p>“Show hospitality to one another without grumbling. As each has received a gift, use it to serve one another, as good stewards of God’s varied grace.”</p><cite>1 Peter 4:9–10</cite></blockquote>
+<p>Often, the cure for our boredom turns out to be someone else’s blessing.</p>
+</div></section>
+<section class="card" data-label="6 · Eternity in Our Hearts"><div class="inner"><h2>Satisfy Us in the Morning</h2><p>Boredom reminds us that this world can’t fully satisfy. But the God who put eternity in our hearts hasn’t left us empty. He offers to satisfy us, every morning, with His love.</p>
+<blockquote>
+<p>“Satisfy us in the morning with your steadfast love, that we may rejoice and be glad all our days.”</p><cite>Psalm 90:14</cite></blockquote>
+<p>And one day, the restlessness will be over for good. Forever with Him will never be dull, because He will never run out of new things to show us.</p>
+<blockquote>
+<p>“And he who was seated on the throne said, ‘Behold, I am making all things new.’”</p><cite>Revelation 21:5</cite></blockquote>
+</div></section>
+<section class="card" data-label="7 · He Took Our Illnesses"><div class="inner"><div class="opener"><p class="kicker">Chapter 7</p><h1>He Took Our Illnesses</h1><p class="sub">For the sick and the weary in body</p></div><p>Some sickness arrives suddenly and leaves quickly. Other sickness lingers: the condition that flares and fades but never quite goes away, the symptom that keeps us up at night, the ailment other people can see. And it comes with its own sermon: <em>God must be punishing you. If you had more faith, you’d be healed by now. Your body is letting you down, and so are you.</em></p>
+<p>Sickness can wear down more than our bodies. It can wear down our hope, our patience, and our sense of who we are.</p>
+<p>So here are some biblical truths for the sick and the weary in body.</p>
+</div></section>
+<section class="card" data-label="7 · He Took Our Illnesses"><div class="inner"><h2>1. Sickness Was Never God&#x27;s Design</h2><p><strong>The weary thought:</strong> <em>Is this just how life is meant to be?</em></p>
+<p><strong>The better truth:</strong> When God finished His creation, He looked at all of it, our bodies included, and called it very good.</p>
+<blockquote>
+<p>“And God saw everything that he had made, and behold, it was very good.”</p><cite>Genesis 1:31</cite></blockquote>
+<p>Sickness entered later, as part of a world broken by sin. Now all creation groans, and so do our bodies, waiting for the day they will be made new.</p>
+<blockquote>
+<p>“For we know that the whole creation has been groaning together in the pains of childbirth until now. And not only the creation, but we ourselves, who have the firstfruits of the Spirit, groan inwardly as we wait eagerly for adoption as sons, the redemption of our bodies.”</p><cite>Romans 8:22–23</cite></blockquote>
+<p>Our sickness is part of the natural ache of a broken world. God never intended it, and He hasn’t made peace with it either.</p>
+</div></section>
+<section class="card" data-label="7 · He Took Our Illnesses"><div class="inner"><h2>2. Sickness Is Not Always Punishment</h2><p><strong>The weary thought:</strong> <em>What did I do to deserve this?</em></p>
+<p><strong>The better truth:</strong> Jesus’ own disciples assumed that illness must be someone’s fault. Jesus corrected them.</p>
+<blockquote>
+<p>“And his disciples asked him, ‘Rabbi, who sinned, this man or his parents, that he was born blind?’ Jesus answered, ‘It was not that this man sinned, or his parents, but that the works of God might be displayed in him.’”</p><cite>John 9:2–3</cite></blockquote>
+<p>Our bodies are not a scoreboard of our sins. A flare-up isn’t God’s verdict on our week. In Christ, there is no condemnation left to be paid out in our flesh.</p>
+</div></section>
+<section class="card" data-label="7 · He Took Our Illnesses"><div class="inner"><h2>3. Jesus Moved Toward the Sick</h2><p><strong>The weary thought:</strong> <em>God is distant from this.</em></p>
+<p><strong>The better truth:</strong> Wherever Jesus went, the sick were brought to Him, and He never sent them away. He wasn’t repelled by their illnesses. He was moved by them.</p>
+<blockquote>
+<p>“When he went ashore he saw a great crowd, and he had compassion on them and healed their sick.”</p><cite>Matthew 14:14</cite></blockquote>
+<p>Matthew saw in this the fulfilment of an ancient promise about the Messiah: that He would take our sickness upon Himself.</p>
+<blockquote>
+<p>“That evening they brought to him many who were oppressed by demons, and he cast out the spirits with a word and healed all who were sick. This was to fulfill what was spoken by the prophet Isaiah: ‘He took our illnesses and bore our diseases.’”</p><cite>Matthew 8:16–17</cite></blockquote>
+<p>The God who took on flesh knows what it is to live in a body. He isn’t distant from ours.</p>
+</div></section>
+<section class="card" data-label="7 · He Took Our Illnesses"><div class="inner"><h2>4. We Can Ask for Healing</h2><p><strong>The weary thought:</strong> <em>I shouldn’t keep asking. Maybe I should just accept it.</em></p>
+<p><strong>The better truth:</strong> We are invited to ask God for healing, plainly and repeatedly. The psalmists did.</p>
+<blockquote>
+<p>“Be gracious to me, O LORD, for I am languishing; heal me, O LORD, for my bones are troubled.”</p><cite>Psalm 6:2</cite></blockquote>
+<blockquote>
+<p>“Heal me, O LORD, and I shall be healed; save me, and I shall be saved, for you are my praise.”</p><cite>Jeremiah 17:14</cite></blockquote>
+<p>Asking isn’t a lack of faith. It is faith. And praying for healing doesn’t rule out using the ordinary means God provides. Among Paul’s dearest companions was a doctor.</p>
+<blockquote>
+<p>“Luke the beloved physician greets you, as does Demas.”</p><cite>Colossians 4:14</cite></blockquote>
+</div></section>
+<section class="card" data-label="7 · He Took Our Illnesses"><div class="inner"><h2>5. When Healing Doesn&#x27;t Come Yet</h2><p><strong>The weary thought:</strong> <em>I’ve prayed and prayed, and nothing has changed. Doesn’t God hear me?</em></p>
+<p><strong>The better truth:</strong> Even Paul prayed for healing and didn’t receive it. Three times he begged God to take away his “thorn in the flesh”, and three times the answer was no.</p>
+<blockquote>
+<p>“Three times I pleaded with the Lord about this, that it should leave me. But he said to me, ‘My grace is sufficient for you, for my power is made perfect in weakness.’”</p><cite>2 Corinthians 12:8–9</cite></blockquote>
+<p>And Paul, who had seen God heal many people through his own hands, once had to leave a sick friend behind.</p>
+<blockquote>
+<p>“Erastus remained at Corinth, and I left Trophimus, who was ill, at Miletus.”</p><cite>2 Timothy 4:20</cite></blockquote>
+<p>A lingering illness doesn’t mean our faith is too small, or that God isn’t listening. Sometimes His answer is healing. Sometimes it is grace enough to carry us through. Either way, He has heard.</p>
+</div></section>
+<section class="card" data-label="7 · He Took Our Illnesses"><div class="inner"><h2>6. Our Worth Isn&#x27;t in Our Bodies</h2><p><strong>The weary thought:</strong> <em>People can see it. I hate how I look.</em></p>
+<p><strong>The better truth:</strong> Some conditions are visible, and that brings its own ache: the self-consciousness, the hiding, the fear of being looked at. But our bodies, even when they struggle, are still His handiwork.</p>
+<blockquote>
+<p>“I praise you, for I am fearfully and wonderfully made.”</p><cite>Psalm 139:14</cite></blockquote>
+<p>And what God is building in us goes deeper than skin. Even as our bodies wear, something within is being made new.</p>
+<blockquote>
+<p>“So we do not lose heart. Though our outer self is wasting away, our inner self is being renewed day by day.”</p><cite>2 Corinthians 4:16</cite></blockquote>
+</div></section>
+<section class="card" data-label="7 · He Took Our Illnesses"><div class="inner"><h2>7. God Sustains Us in It</h2><p><strong>The weary thought:</strong> <em>I can’t keep going like this.</em></p>
+<p><strong>The better truth:</strong> We don’t have to keep ourselves going. God sustains the sick. He is present not only after the illness, but in the middle of it.</p>
+<blockquote>
+<p>“The LORD sustains him on his sickbed; in his illness you restore him to full health.”</p><cite>Psalm 41:3</cite></blockquote>
+<p>The strength we need for today, He supplies for today.</p>
+</div></section>
+<section class="card" data-label="7 · He Took Our Illnesses"><div class="inner"><h2>8. Lament Is Faith</h2><p><strong>The weary thought:</strong> <em>I shouldn’t complain to God.</em></p>
+<p><strong>The better truth:</strong> Lingering sickness can wear us out, especially in the long nights when our bodies won’t let us rest. The psalmists knew those nights well, and they told God about them.</p>
+<blockquote>
+<p>“I am weary with my moaning; every night I flood my bed with tears; I drench my couch with my weeping.”</p><cite>Psalm 6:6</cite></blockquote>
+<blockquote>
+<p>“You hold my eyelids open; I am so troubled that I cannot speak.”</p><cite>Psalm 77:4</cite></blockquote>
+<p>Even “how long?” is a prayer, and Scripture gives us the words for it.</p>
+<blockquote>
+<p>“How long, O LORD? Will you forget me forever? How long will you hide your face from me?”</p><cite>Psalm 13:1</cite></blockquote>
+<p>Lament isn’t the opposite of trust. It is trust, bringing our pain to the only One who can do anything about it.</p>
+</div></section>
+<section class="card" data-label="7 · He Took Our Illnesses"><div class="inner"><h2>9. Weakness Can Become a Window</h2><p><strong>The weary thought:</strong> <em>My sickness makes me useless.</em></p>
+<p><strong>The better truth:</strong> God doesn’t need us to be strong to work through us. In fact, our frailty is where His power shows most clearly.</p>
+<blockquote>
+<p>“But we have this treasure in jars of clay, to show that the surpassing power belongs to God and not to us.”</p><cite>2 Corinthians 4:7</cite></blockquote>
+<p>Paul first brought the gospel to the Galatians <em>because</em> he was ill. His sickness was the very occasion for their salvation. And they didn’t despise his condition. They welcomed him.</p>
+<blockquote>
+<p>“You know it was because of a bodily ailment that I preached the gospel to you at first, and though my condition was a trial to you, you did not scorn or despise me, but received me as an angel of God, as Christ Jesus.”</p><cite>Galatians 4:13–14</cite></blockquote>
+<p>Our weakness is never wasted in God’s hands.</p>
+</div></section>
+<section class="card" data-label="7 · He Took Our Illnesses"><div class="inner"><h2>10. Everyone Gets Sick</h2><p><strong>The weary thought:</strong> <em>Everyone else seems healthy. I’m the only one whose body keeps failing.</em></p>
+<p><strong>The better truth:</strong> Sickness tells us we’re the exception, and then it tells us to hide away until we’re better. But everyone gets sick. Just as it frees us to realise that everyone aches, it frees us to realise this. Every body in this broken world wears down in some way, at some time, whether others can see it or not.</p>
+<p>So we don’t have to carry our sickness alone. Scripture expects the sick to let others in.</p>
+<blockquote>
+<p>“Is anyone among you sick? Let him call for the elders of the church, and let them pray over him.”</p><cite>James 5:14</cite></blockquote>
+<p>And because everyone gets sick, we can turn outward too. Our own sickness can make us more tender toward others who are suffering in their bodies, and Jesus counts every visit to them as a visit to Him.</p>
+<blockquote>
+<p>“I was sick and you visited me.”</p><cite>Matthew 25:36</cite></blockquote>
+</div></section>
+<section class="card" data-label="7 · He Took Our Illnesses"><div class="inner"><h2>No One Will Say &quot;I Am Sick&quot;</h2><p>Our bodies will not always be like this. The same Lord who took our illnesses will one day transform these weak, wearing bodies into bodies like His own.</p>
+<blockquote>
+<p>“But our citizenship is in heaven, and from it we await a Savior, the Lord Jesus Christ, who will transform our lowly body to be like his glorious body.”</p><cite>Philippians 3:20–21</cite></blockquote>
+<p>And in that city, sickness will be gone for good.</p>
+<blockquote>
+<p>“And no inhabitant will say, ‘I am sick’; the people who dwell there will be forgiven their iniquity.”</p><cite>Isaiah 33:24</cite></blockquote>
+</div></section>
+<section class="card" data-label="8 · What the Locust Ate"><div class="inner"><div class="opener"><p class="kicker">Chapter 8</p><h1>What the Locust Ate</h1><p class="sub">For the regretful heart</p></div><p>Regret is the ache that lingers after forgiveness. We’ve repented. We know we’re forgiven. The shame has loosened its grip. And yet, when we look back, something still hurts: the years that went the wrong way, the friendships we damaged, the chances we missed, the words we said too late or never said at all. And regret comes with its own sermon: <em>if only. You can never get it back. You wasted it.</em></p>
+<p>Guilt says, <em>I did wrong.</em> Shame says, <em>I am wrong.</em> Regret says, <em>something is lost, and I can’t get it back.</em> Forgiveness cancels the debt, but it doesn’t rewind time. So regret needs an answer of its own.</p>
+<p>Here are some biblical truths for the regretful heart.</p>
+</div></section>
+<section class="card" data-label="8 · What the Locust Ate"><div class="inner"><h2>1. Regret Is a Form of Grief</h2><p><strong>The regretful thought:</strong> <em>I shouldn’t still feel sad about this.</em></p>
+<p><strong>The better truth:</strong> Regret is grief over what was lost, and Scripture doesn’t rush us past grief. When Peter realised he had denied Jesus three times, at the very moment it mattered most, he didn’t shrug it off.</p>
+<blockquote>
+<p>“And he went out and wept bitterly.”</p><cite>Luke 22:62</cite></blockquote>
+<p>His tears weren’t a lack of faith. They were the honest response of someone who loved Jesus and had failed Him. Our sadness over what was lost is allowed too.</p>
+</div></section>
+<section class="card" data-label="8 · What the Locust Ate"><div class="inner"><h2>2. Forgiven, Yet Still Grieving</h2><p><strong>The regretful thought:</strong> <em>If I’m really forgiven, why does it still hurt?</em></p>
+<p><strong>The better truth:</strong> Because forgiveness and consequences aren’t the same thing. When David confessed his sin with Bathsheba, God forgave him immediately.</p>
+<blockquote>
+<p>“David said to Nathan, ‘I have sinned against the LORD.’ And Nathan said to David, ‘The LORD also has put away your sin; you shall not die.’”</p><cite>2 Samuel 12:13</cite></blockquote>
+<p>But the consequences remained, and David grieved them deeply. Then, when the grieving was done, he did something remarkable. He got up, and he worshipped.</p>
+<blockquote>
+<p>“Then David arose from the earth and washed and anointed himself and changed his clothes. And he went into the house of the LORD and worshiped.”</p><cite>2 Samuel 12:20</cite></blockquote>
+<p>Grieving what was lost doesn’t mean we’re unforgiven. And it doesn’t have to last forever. There is a time to rise and worship again.</p>
+</div></section>
+<section class="card" data-label="8 · What the Locust Ate"><div class="inner"><h2>3. Regret Can Lead Back or Lead Down</h2><p><strong>The regretful thought:</strong> <em>I just keep replaying it.</em></p>
+<p><strong>The better truth:</strong> Two disciples betrayed Jesus on the same night. Both were filled with regret. Judas’s remorse led him into despair.</p>
+<blockquote>
+<p>“Then when Judas, his betrayer, saw that Jesus was condemned, he changed his mind and brought back the thirty pieces of silver to the chief priests and the elders.”</p><cite>Matthew 27:3</cite></blockquote>
+<p>Peter’s regret led him back to Jesus. The difference wasn’t the size of their sin. It was where they took their regret. Paul describes the same two paths.</p>
+<blockquote>
+<p>“For godly grief produces a repentance that leads to salvation without regret, whereas worldly grief produces death.”</p><cite>2 Corinthians 7:10</cite></blockquote>
+<p>Regret that circles back to ourselves keeps us stuck. Regret that we bring to Jesus becomes the beginning of restoration.</p>
+</div></section>
+<section class="card" data-label="8 · What the Locust Ate"><div class="inner"><h2>4. God Restores What Was Lost</h2><p><strong>The regretful thought:</strong> <em>Those years are gone for good.</em></p>
+<p><strong>The better truth:</strong> Israel had lost years of harvests to swarms of locusts, devoured and unrecoverable. But God made them a promise that seems impossible: not merely to stop the loss, but to give back what was taken.</p>
+<blockquote>
+<p>“I will restore to you the years that the swarming locust has eaten… You shall eat in plenty and be satisfied, and praise the name of the LORD your God, who has dealt wondrously with you. And my people shall never again be put to shame.”</p><cite>Joel 2:25–26</cite></blockquote>
+<p>God doesn’t rewind time. But He is able to make up for lost years in ways we would never think to ask for.</p>
+</div></section>
+<section class="card" data-label="8 · What the Locust Ate"><div class="inner"><h2>5. God Brings Good Out of What Went Wrong</h2><p><strong>The regretful thought:</strong> <em>Nothing good can come from this.</em></p>
+<p><strong>The better truth:</strong> Joseph’s brothers sold him into slavery, and the regret of it hung over them for decades. But when they finally stood before him, Joseph saw something they couldn’t.</p>
+<blockquote>
+<p>“As for you, you meant evil against me, but God meant it for good, to bring it about that many people should be kept alive, as they are today.”</p><cite>Genesis 50:20</cite></blockquote>
+<p>The God who could turn that betrayal into the saving of nations can weave even our worst chapters into something good.</p>
+<blockquote>
+<p>“And we know that for those who love God all things work together for good, for those who are called according to his purpose.”</p><cite>Romans 8:28</cite></blockquote>
+</div></section>
+<section class="card" data-label="8 · What the Locust Ate"><div class="inner"><h2>6. Our Failures Can Strengthen Others</h2><p><strong>The regretful thought:</strong> <em>My past disqualifies me.</em></p>
+<p><strong>The better truth:</strong> Before Peter’s denial, Jesus already knew it was coming. And He already had a purpose for Peter on the other side of it.</p>
+<blockquote>
+<p>“Simon, Simon, behold, Satan demanded to have you, that he might sift you like wheat, but I have prayed for you that your faith may not fail. And when you have turned again, strengthen your brothers.”</p><cite>Luke 22:31–32</cite></blockquote>
+<p>Notice the word <em>when</em>, not <em>if</em>. Jesus expected Peter to come back, and He planned to use Peter’s failure to make him a better shepherd of others who would fail too. What we regret can become what equips us to help.</p>
+</div></section>
+<section class="card" data-label="8 · What the Locust Ate"><div class="inner"><h2>7. God Matches the Hard Years with Gladness</h2><p><strong>The regretful thought:</strong> <em>Too much time has been wasted.</em></p>
+<p><strong>The better truth:</strong> Psalm 90 is a prayer of Moses, looking back on long, hard years. He doesn’t pretend they were good. Instead, he asks God to teach him through them, and to make up for them.</p>
+<blockquote>
+<p>“So teach us to number our days that we may get a heart of wisdom.”</p><cite>Psalm 90:12</cite></blockquote>
+<blockquote>
+<p>“Satisfy us in the morning with your steadfast love, that we may rejoice and be glad all our days. Make us glad for as many days as you have afflicted us, and for as many years as we have seen evil.”</p><cite>Psalm 90:14–15</cite></blockquote>
+<p>Regret can teach us to number our days. And God can answer the lost years with years of gladness.</p>
+</div></section>
+<section class="card" data-label="8 · What the Locust Ate"><div class="inner"><h2>8. Our Story Isn&#x27;t Over</h2><p><strong>The regretful thought:</strong> <em>It’s too late for me now.</em></p>
+<p><strong>The better truth:</strong> Paul had more to regret than most of us ever will. Before he met Jesus, he hunted down Christians and approved of their deaths. He never forgot it. But he also never let it be the last word.</p>
+<blockquote>
+<p>“For I am the least of the apostles, unworthy to be called an apostle, because I persecuted the church of God. But by the grace of God I am what I am, and his grace toward me was not in vain.”</p><cite>1 Corinthians 15:9–10</cite></blockquote>
+<p>In fact, Paul saw his past as the very thing that put God’s patience on display.</p>
+<blockquote>
+<p>“But I received mercy for this reason, that in me, as the foremost, Jesus Christ might display his perfect patience as an example to those who were to believe in him for eternal life.”</p><cite>1 Timothy 1:16</cite></blockquote>
+<p>If grace could rewrite Paul’s story, it isn’t too late to rewrite ours.</p>
+</div></section>
+<section class="card" data-label="8 · What the Locust Ate"><div class="inner"><h2>9. We Can Forget What Lies Behind</h2><p><strong>The regretful thought:</strong> <em>I can’t stop looking back.</em></p>
+<p><strong>The better truth:</strong> Paul’s way forward wasn’t to pretend the past never happened. It was to refuse to live there.</p>
+<blockquote>
+<p>“But one thing I do: forgetting what lies behind and straining forward to what lies ahead, I press on toward the goal for the prize of the upward call of God in Christ Jesus.”</p><cite>Philippians 3:13–14</cite></blockquote>
+<p>“Forgetting” here doesn’t mean erasing our memory. It means no longer letting the past steer. We can learn from what lies behind, grieve it, and hand it to God, and then turn around and face forward.</p>
+</div></section>
+<section class="card" data-label="8 · What the Locust Ate"><div class="inner"><h2>10. Everyone Has Regrets</h2><p><strong>The regretful thought:</strong> <em>Everyone else seems to have made the right choices. I’m the only one who wasted so much.</em></p>
+<p><strong>The better truth:</strong> Regret tells us we’re uniquely foolish, and then it tells us to keep our past to ourselves. But everyone has regrets. Just as it frees us to realise that everyone aches, it frees us to realise this.</p>
+<blockquote>
+<p>“Surely there is not a righteous man on earth who does good and never sins.”</p><cite>Ecclesiastes 7:20</cite></blockquote>
+<p>The people around us are carrying their own “if onlys”, whether or not they show it. So we don’t have to hide our stories. In fact, our regrets, once redeemed, can become a gift to others. After his greatest failure, David’s response wasn’t to bury it, but to let it point others back to God.</p>
+<blockquote>
+<p>“Then I will teach transgressors your ways, and sinners will return to you.”</p><cite>Psalm 51:13</cite></blockquote>
+<p>When we share honestly what we’ve lost and how God has met us in it, we give others permission to bring their own regrets into the light, and to hope again.</p>
+</div></section>
+<section class="card" data-label="8 · What the Locust Ate"><div class="inner"><h2>Youth Renewed</h2><p>Regret looks backward at what can’t be undone. But the God who forgives also redeems, and He doesn’t only give back what was lost. He renews us.</p>
+<blockquote>
+<p>“Bless the LORD, O my soul, and forget not all his benefits… who redeems your life from the pit, who crowns you with steadfast love and mercy, who satisfies you with good so that your youth is renewed like the eagle’s.”</p><cite>Psalm 103:2, 4–5</cite></blockquote>
+<p>The years the locust ate are not the end of the story. The God who restores is still writing.</p>
+</div></section>
+<section class="card" data-label="9 · My Grace Is Sufficient"><div class="inner"><div class="opener"><p class="kicker">Chapter 9</p><h1>My Grace Is Sufficient</h1><p class="sub">For the heart that feels inadequate</p></div><p>Some of us carry a quiet, constant sense of not being enough. Not smart enough, not strong enough, not successful enough, not manly or womanly enough, not enough like the people around us. We set standards for ourselves that no one asked us to meet, and then we condemn ourselves for missing them. And inadequacy comes with its own sermon: <em>everyone else has it together. You’ll never measure up. Try harder.</em></p>
+<p>But Scripture doesn’t answer inadequacy by telling us we’re secretly enough after all. It tells us something better.</p>
+<p>So here are some biblical truths for the heart that feels inadequate.</p>
+</div></section>
+<section class="card" data-label="9 · My Grace Is Sufficient"><div class="inner"><h2>1. We Were Never Meant to Be Enough on Our Own</h2><p><strong>The inadequate thought:</strong> <em>I should be able to handle this by myself.</em></p>
+<p><strong>The better truth:</strong> Feeling insufficient isn’t a sign that something has gone wrong. It’s simply the truth about every human being. Paul, one of the most capable people who ever lived, said so plainly.</p>
+<blockquote>
+<p>“Not that we are sufficient in ourselves to claim anything as coming from us, but our sufficiency is from God.”</p><cite>2 Corinthians 3:5</cite></blockquote>
+<p>Jesus said it even more bluntly.</p>
+<blockquote>
+<p>“I am the vine; you are the branches. Whoever abides in me and I in him, he it is that bears much fruit, for apart from me you can do nothing.”</p><cite>John 15:5</cite></blockquote>
+<p>We were made to depend. The goal was never self-sufficiency. It was God-sufficiency.</p>
+</div></section>
+<section class="card" data-label="9 · My Grace Is Sufficient"><div class="inner"><h2>2. God Chooses the Inadequate</h2><p><strong>The inadequate thought:</strong> <em>God uses impressive people. That isn’t me.</em></p>
+<p><strong>The better truth:</strong> Look at who God actually chooses. Again and again, it’s the people the world would overlook.</p>
+<blockquote>
+<p>“For consider your calling, brothers: not many of you were wise according to worldly standards, not many were powerful, not many were of noble birth. But God chose what is foolish in the world to shame the wise; God chose what is weak in the world to shame the strong.”</p><cite>1 Corinthians 1:26–27</cite></blockquote>
+<p>Our inadequacy doesn’t disqualify us from His purposes. It’s often the very thing that qualifies us, so that no one mistakes the glory for ours.</p>
+</div></section>
+<section class="card" data-label="9 · My Grace Is Sufficient"><div class="inner"><h2>3. Moses Felt It Too</h2><p><strong>The inadequate thought:</strong> <em>I’m not gifted enough for what’s in front of me.</em></p>
+<p><strong>The better truth:</strong> When God called Moses to speak to Pharaoh, Moses’ first response was to list his weaknesses.</p>
+<blockquote>
+<p>“But Moses said to the LORD, ‘Oh, my Lord, I am not eloquent, either in the past or since you have spoken to your servant, but I am slow of speech and of tongue.’”</p><cite>Exodus 4:10</cite></blockquote>
+<p>God didn’t argue that Moses was secretly a great speaker. He pointed to Himself.</p>
+<blockquote>
+<p>“Then the LORD said to him, ‘Who has made man’s mouth?… Now therefore go, and I will be with your mouth and teach you what you shall speak.’”</p><cite>Exodus 4:11–12</cite></blockquote>
+<p>God’s answer to our inadequacy is rarely <em>you’re enough</em>. It is almost always <em>I will be with you</em>.</p>
+</div></section>
+<section class="card" data-label="9 · My Grace Is Sufficient"><div class="inner"><h2>4. The Least in His Family</h2><p><strong>The inadequate thought:</strong> <em>I’m the weakest one here.</em></p>
+<p><strong>The better truth:</strong> Gideon thought so too. When the angel called him a mighty man of valour, he was hiding from his enemies, and he protested.</p>
+<blockquote>
+<p>“Please, Lord, how can I save Israel? Behold, my clan is the weakest in Manasseh, and I am the least in my father’s house.”</p><cite>Judges 6:15</cite></blockquote>
+<p>Once again, God’s answer wasn’t a pep talk. It was a promise.</p>
+<blockquote>
+<p>“And the LORD said to him, ‘But I will be with you, and you shall strike the Midianites as one man.’”</p><cite>Judges 6:16</cite></blockquote>
+</div></section>
+<section class="card" data-label="9 · My Grace Is Sufficient"><div class="inner"><h2>5. Our Standards Aren&#x27;t His</h2><p><strong>The inadequate thought:</strong> <em>I don’t measure up to what a person like me is supposed to be.</em></p>
+<p><strong>The better truth:</strong> Much of our inadequacy comes from measuring ourselves against standards God never set: cultural images of strength, success, attractiveness or achievement. But God doesn’t boast in the things we boast in.</p>
+<blockquote>
+<p>“Thus says the LORD: ‘Let not the wise man boast in his wisdom, let not the mighty man boast in his might, let not the rich man boast in his riches, but let him who boasts boast in this, that he understands and knows me, that I am the LORD who practices steadfast love, justice, and righteousness in the earth. For in these things I delight, declares the LORD.’”</p><cite>Jeremiah 9:23–24</cite></blockquote>
+<p>The measure that matters most isn’t how impressive we are, but whether we know Him.</p>
+</div></section>
+<section class="card" data-label="9 · My Grace Is Sufficient"><div class="inner"><h2>6. Self-Imposed Expectations Are Heavy Yokes</h2><p><strong>The inadequate thought:</strong> <em>I have to do better. I always have to do better.</em></p>
+<p><strong>The better truth:</strong> Many of the expectations crushing us were never placed on us by God. We placed them on ourselves. And Jesus offers to take them off.</p>
+<blockquote>
+<p>“Come to me, all who labor and are heavy laden, and I will give you rest. Take my yoke upon you, and learn from me, for I am gentle and lowly in heart, and you will find rest for your souls. For my yoke is easy, and my burden is light.”</p><cite>Matthew 11:28–30</cite></blockquote>
+<p>If what we’re carrying feels crushing, it may not be His yoke at all.</p>
+<p>This doesn’t mean we can slack off. Jesus still says, “Take <em>my</em> yoke.” We exchange a crushing yoke for a light one, not for none at all. The difference isn’t whether we work hard, but why. Self-imposed expectations drive us by fear toward a standard that keeps moving. Christ’s yoke invites us to be faithful today, from love, and then to rest. Paul worked harder than anyone, but he knew where the strength came from.</p>
+<blockquote>
+<p>“But by the grace of God I am what I am, and his grace toward me was not in vain. On the contrary, I worked harder than any of them, though it was not I, but the grace of God that is with me.”</p><cite>1 Corinthians 15:10</cite></blockquote>
+<p>Grace isn’t opposed to effort. It is opposed to earning.</p>
+</div></section>
+<section class="card" data-label="9 · My Grace Is Sufficient"><div class="inner"><h2>7. Faithfulness, Not Impressiveness</h2><p><strong>The inadequate thought:</strong> <em>Unless I do something great, I’ve failed.</em></p>
+<p><strong>The better truth:</strong> God doesn’t ask us to be impressive. He asks us to be faithful with what He has given us, however small it looks.</p>
+<blockquote>
+<p>“Moreover, it is required of stewards that they be found faithful.”</p><cite>1 Corinthians 4:2</cite></blockquote>
+<p>And He promises to honour that faithfulness, little by little.</p>
+<blockquote>
+<p>“His master said to him, ‘Well done, good and faithful servant. You have been faithful over a little; I will set you over much. Enter into the joy of your master.’”</p><cite>Matthew 25:21</cite></blockquote>
+</div></section>
+<section class="card" data-label="9 · My Grace Is Sufficient"><div class="inner"><h2>8. His Power Shows in Our Weakness</h2><p><strong>The inadequate thought:</strong> <em>If only I were stronger, God could really use me.</em></p>
+<p><strong>The better truth:</strong> Paul pleaded for his weakness to be removed. God’s answer turned his whole perspective upside down.</p>
+<blockquote>
+<p>“But he said to me, ‘My grace is sufficient for you, for my power is made perfect in weakness.’ Therefore I will boast all the more gladly of my weaknesses, so that the power of Christ may rest upon me… For when I am weak, then I am strong.”</p><cite>2 Corinthians 12:9–10</cite></blockquote>
+<p>Our weakness isn’t the obstacle to God’s power. It’s the place where it shows most clearly.</p>
+<p>What does that look like in practice? Weak people pray more, because they know they can’t manage alone, and God answers prayer. Those who have struggled can comfort others in ways the strong never could. Small acts of faithfulness, like a meal cooked for a friend or a patient conversation, count in God’s economy as much as grand ones. Honesty about our weaknesses makes others feel safe to admit theirs. And weakness draws us to depend on one another, the way Moses needed Aaron and Hur to hold up his tired arms. Through all of it, it becomes obvious that the glory belongs to God.</p>
+<blockquote>
+<p>“But Moses’ hands grew weary, so they took a stone and put it under him, and he sat on it, while Aaron and Hur held up his hands, one on one side, and the other on the other side. So his hands were steady until the going down of the sun.”</p><cite>Exodus 17:12</cite></blockquote>
+</div></section>
+<section class="card" data-label="9 · My Grace Is Sufficient"><div class="inner"><h2>9. Christ Is Our Enough</h2><p><strong>The inadequate thought:</strong> <em>Something is always missing in me.</em></p>
+<p><strong>The better truth:</strong> In ourselves, something is always missing. But we are not only in ourselves. We are in Christ, and in Him there is nothing missing at all.</p>
+<blockquote>
+<p>“For in him the whole fullness of deity dwells bodily, and you have been filled in him, who is the head of all rule and authority.”</p><cite>Colossians 2:9–10</cite></blockquote>
+<p>We don’t need to become enough. We have already been filled by the One who is.</p>
+</div></section>
+<section class="card" data-label="9 · My Grace Is Sufficient"><div class="inner"><h2>10. Everyone Falls Short</h2><p><strong>The inadequate thought:</strong> <em>Everyone else is capable and confident. I’m the only one who doesn’t measure up.</em></p>
+<p><strong>The better truth:</strong> Inadequacy tells us we’re the exception, and then it tells us to hide our weaknesses so no one finds out. But everyone falls short. Just as it frees us to realise that everyone aches, it frees us to realise this.</p>
+<blockquote>
+<p>“For all have sinned and fall short of the glory of God.”</p><cite>Romans 3:23</cite></blockquote>
+<p>The confident people around us have their own private lists of inadequacies. And God designed His church precisely so that no one has to be enough alone. Each of us lacks what someone else has, and has what someone else lacks.</p>
+<blockquote>
+<p>“For as in one body we have many members, and the members do not all have the same function, so we, though many, are one body in Christ, and individually members one of another. Having gifts that differ according to the grace given to us, let us use them.”</p><cite>Romans 12:4–6</cite></blockquote>
+<p>So our lack isn’t something to hide. It’s room for someone else’s gift. And our gifts, however small they seem, are exactly what someone else is missing.</p>
+<blockquote>
+<p>“The eye cannot say to the hand, ‘I have no need of you,’ nor again the head to the feet, ‘I have no need of you.’ On the contrary, the parts of the body that seem to be weaker are indispensable.”</p><cite>1 Corinthians 12:21–22</cite></blockquote>
+</div></section>
+<section class="card" data-label="9 · My Grace Is Sufficient"><div class="inner"><h2>All Sufficiency</h2><p>We will never be enough on our own. But we were never meant to be. The God who calls us also supplies us, with more than enough for everything He asks.</p>
+<blockquote>
+<p>“And God is able to make all grace abound to you, so that having all sufficiency in all things at all times, you may abound in every good work.”</p><cite>2 Corinthians 9:8</cite></blockquote>
+</div></section>
+<section class="card" data-label="10 · Swallowed Up in Victory"><div class="inner"><div class="opener"><p class="kicker">Chapter 10</p><h1>Swallowed Up in Victory</h1><p class="sub">For those who fear death, and those who grieve it</p></div><p>Death is the one pain none of us will avoid. We meet it when someone we love dies, and we feel it in the quiet awareness that one day we will die too. It comes with its own sermon: <em>this is the end. Everything you love will be taken. Nothing you do will last.</em></p>
+<p>Death is the oldest and the last of our pains. But it isn’t the strongest. Someone has already faced it, entered it, and walked out the other side.</p>
+<p>So here are some biblical truths for those who fear death, and those who grieve it.</p>
+</div></section>
+<section class="card" data-label="10 · Swallowed Up in Victory"><div class="inner"><h2>1. Death Is an Enemy</h2><p><strong>The fearful thought:</strong> <em>I should just accept that death is a natural part of life.</em></p>
+<p><strong>The better truth:</strong> Scripture doesn’t call death natural. It calls it an enemy, an intruder in God’s good world, and one whose days are numbered.</p>
+<blockquote>
+<p>“The last enemy to be destroyed is death.”</p><cite>1 Corinthians 15:26</cite></blockquote>
+<p>It’s right to hate death. God hates it too. And He has promised to destroy it.</p>
+</div></section>
+<section class="card" data-label="10 · Swallowed Up in Victory"><div class="inner"><h2>2. Jesus Is the Resurrection</h2><p><strong>The fearful thought:</strong> <em>Death has the final word.</em></p>
+<p><strong>The better truth:</strong> Standing outside the tomb of His friend Lazarus, Jesus made a claim no one else in history could make.</p>
+<blockquote>
+<p>“Jesus said to her, ‘I am the resurrection and the life. Whoever believes in me, though he die, yet shall he live, and everyone who lives and believes in me shall never die. Do you believe this?’”</p><cite>John 11:25–26</cite></blockquote>
+<p>Then He proved it, by calling a dead man out of his grave. And a few weeks later, He walked out of His own.</p>
+</div></section>
+<section class="card" data-label="10 · Swallowed Up in Victory"><div class="inner"><h2>3. Our Days Are in His Hands</h2><p><strong>The fearful thought:</strong> <em>My life could end at any moment, and no one is in control.</em></p>
+<p><strong>The better truth:</strong> Our lifespan isn’t left to chance. Every one of our days was known to God before any of them began.</p>
+<blockquote>
+<p>“Your eyes saw my unformed substance; in your book were written, every one of them, the days that were formed for me, when as yet there was none of them.”</p><cite>Psalm 139:16</cite></blockquote>
+<blockquote>
+<p>“My times are in your hand.”</p><cite>Psalm 31:15</cite></blockquote>
+<p>We don’t know how many days we have. But the One who does is good, and He holds every one of them.</p>
+</div></section>
+<section class="card" data-label="10 · Swallowed Up in Victory"><div class="inner"><h2>4. Jesus Tasted Death for Us</h2><p><strong>The fearful thought:</strong> <em>I’m afraid of dying.</em></p>
+<p><strong>The better truth:</strong> Jesus didn’t avoid death. He walked straight into it on our behalf, so that death would lose its power over us.</p>
+<blockquote>
+<p>“But we see him who for a little while was made lower than the angels, namely Jesus, crowned with glory and honor because of the suffering of death, so that by the grace of God he might taste death for everyone.”</p><cite>Hebrews 2:9</cite></blockquote>
+<p>And He did it specifically to set free those who live in fear of it.</p>
+<blockquote>
+<p>“That through death he might destroy the one who has the power of death, that is, the devil, and deliver all those who through fear of death were subject to lifelong slavery.”</p><cite>Hebrews 2:14–15</cite></blockquote>
+<p>The fear of death doesn’t have to rule us anymore. Jesus has already been there, and come back.</p>
+</div></section>
+<section class="card" data-label="10 · Swallowed Up in Victory"><div class="inner"><h2>5. We Grieve, but Not Without Hope</h2><p><strong>The grieving thought:</strong> <em>They’re gone, and I’ll never see them again.</em></p>
+<p><strong>The better truth:</strong> Christians grieve. We aren’t asked to pretend that losing someone doesn’t hurt. But our grief is different, because it has hope inside it.</p>
+<blockquote>
+<p>“But we do not want you to be uninformed, brothers, about those who are asleep, that you may not grieve as others do who have no hope. For since we believe that Jesus died and rose again, even so, through Jesus, God will bring with him those who have fallen asleep.”</p><cite>1 Thessalonians 4:13–14</cite></blockquote>
+<p>For those who are in Christ, death is described as sleep: real, but not final. Sleep is followed by waking.</p>
+</div></section>
+<section class="card" data-label="10 · Swallowed Up in Victory"><div class="inner"><h2>6. He Walks Through the Valley with Us</h2><p><strong>The fearful thought:</strong> <em>I’ll have to face it alone.</em></p>
+<p><strong>The better truth:</strong> Whatever else death is, it isn’t lonely for the believer. The Shepherd doesn’t wait for us on the other side of the valley. He walks through it with us.</p>
+<blockquote>
+<p>“Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me; your rod and your staff, they comfort me.”</p><cite>Psalm 23:4</cite></blockquote>
+</div></section>
+<section class="card" data-label="10 · Swallowed Up in Victory"><div class="inner"><h2>7. Precious in His Sight</h2><p><strong>The grieving thought:</strong> <em>Their death was meaningless.</em></p>
+<p><strong>The better truth:</strong> No believer’s death goes unnoticed by God. He doesn’t treat it as a statistic. He treasures it.</p>
+<blockquote>
+<p>“Precious in the sight of the LORD is the death of his saints.”</p><cite>Psalm 116:15</cite></blockquote>
+<p>The moment we let go of someone we love, God receives them as His own.</p>
+</div></section>
+<section class="card" data-label="10 · Swallowed Up in Victory"><div class="inner"><h2>8. To Die Is Gain</h2><p><strong>The fearful thought:</strong> <em>Death means losing everything.</em></p>
+<p><strong>The better truth:</strong> For the believer, death doesn’t mean losing everything. It means gaining the One who is everything. Paul, facing possible execution, could genuinely say this.</p>
+<blockquote>
+<p>“For to me to live is Christ, and to die is gain… My desire is to depart and be with Christ, for that is far better.”</p><cite>Philippians 1:21, 23</cite></blockquote>
+<p>And Jesus Himself promised to prepare a place for us, and to come and take us there.</p>
+<blockquote>
+<p>“In my Father’s house are many rooms. If it were not so, would I have told you that I go to prepare a place for you? And if I go and prepare a place for you, I will come again and will take you to myself, that where I am you may be also.”</p><cite>John 14:2–3</cite></blockquote>
+</div></section>
+<section class="card" data-label="10 · Swallowed Up in Victory"><div class="inner"><h2>9. Our Bodies Will Be Raised</h2><p><strong>The fearful thought:</strong> <em>My body will simply decay and be gone.</em></p>
+<p><strong>The better truth:</strong> Christian hope isn’t only that our souls go to heaven. It’s that our bodies will be raised, transformed and made new.</p>
+<blockquote>
+<p>“So is it with the resurrection of the dead. What is sown is perishable; what is raised is imperishable. It is sown in dishonor; it is raised in glory. It is sown in weakness; it is raised in power. It is sown a natural body; it is raised a spiritual body.”</p><cite>1 Corinthians 15:42–44</cite></blockquote>
+<p>The body we bury is a seed, not a full stop.</p>
+</div></section>
+<section class="card" data-label="10 · Swallowed Up in Victory"><div class="inner"><h2>10. Everyone Dies</h2><p><strong>The fearful thought:</strong> <em>No one around me thinks about this. I shouldn’t bring it up.</em></p>
+<p><strong>The better truth:</strong> Death tells us to keep our fears and griefs to ourselves, as if no one else could bear to hear them. But everyone dies. Just as it frees us to realise that everyone aches, it frees us to realise this. Death is the one thing every person on earth has in common.</p>
+<blockquote>
+<p>“And just as it is appointed for man to die once, and after that comes judgment, so Christ, having been offered once to bear the sins of many, will appear a second time, not to deal with sin but to save those who are eagerly waiting for him.”</p><cite>Hebrews 9:27–28</cite></blockquote>
+<p>Because everyone faces it, we can face it together. Scripture even says there is wisdom in sitting with the grieving, because it reminds the living of what truly matters.</p>
+<blockquote>
+<p>“It is better to go to the house of mourning than to go to the house of feasting, for this is the end of all mankind, and the living will lay it to heart.”</p><cite>Ecclesiastes 7:2</cite></blockquote>
+<p>So we don’t have to grieve alone, or fear alone. We can show up at funerals, sit with the bereaved, speak honestly about our fears, and share the hope we have. Paul’s teaching on death ends not with a doctrine, but with a call to community.</p>
+<blockquote>
+<p>“Therefore encourage one another with these words.”</p><cite>1 Thessalonians 4:18</cite></blockquote>
+</div></section>
+<section class="card" data-label="10 · Swallowed Up in Victory"><div class="inner"><h2>Swallowed Up</h2><p>Every pain in this broken world, the anxiety, the guilt, the shame, the loneliness, the heartbreak, the sickness, all of it, ends in the same place. But death isn’t the end of the story. It is about to be swallowed whole.</p>
+<blockquote>
+<p>“When the perishable puts on the imperishable, and the mortal puts on immortality, then shall come to pass the saying that is written: ‘Death is swallowed up in victory.’ ‘O death, where is your victory? O death, where is your sting?’ The sting of death is sin, and the power of sin is the law. But thanks be to God, who gives us the victory through our Lord Jesus Christ.”</p><cite>1 Corinthians 15:54–57</cite></blockquote>
+<p>Everyone aches. But not forever.</p>
+</div></section>
+<section class="card" data-label="Conclusion"><div class="inner"><div class="opener"><p class="kicker">Conclusion</p><h1>Until We Are Home</h1><p class="sub">A conclusion</p></div><p>We have walked through ten pains together: anxiety, guilt, shame, loneliness, heartbreak, boredom, sickness, regret, inadequacy and death. Each one preached its own sermon. Each one told us something about ourselves that wasn’t true. And each time, God answered with something better.</p>
+<p>If you’ve read this far, you may have noticed that His answers keep returning to the same few truths. Whatever the pain, the same God meets us in it, in the same ways.</p>
+</div></section>
+<section class="card" data-label="Conclusion"><div class="inner"><h2>He Is Near</h2><p>Not one of these pains drives God away. He is near to the brokenhearted, He sustains the sick, He walks with us through the valley of the shadow of death. Whatever we are carrying, we are not carrying it out of His sight.</p>
+<blockquote>
+<p>“Fear not, for I am with you; be not dismayed, for I am your God; I will strengthen you, I will help you, I will uphold you with my righteous right hand.”</p><cite>Isaiah 41:10</cite></blockquote>
+</div></section>
+<section class="card" data-label="Conclusion"><div class="inner"><h2>He Has Carried It</h2><p>Every pain in this book is one that Jesus has already borne. He was anxious in Gethsemane, abandoned by His friends, shamed on the cross, acquainted with grief, and He tasted death itself. He didn’t save us from a distance. He entered every ache we know.</p>
+<blockquote>
+<p>“Surely he has borne our griefs and carried our sorrows.”</p><cite>Isaiah 53:4</cite></blockquote>
+<p>Because He carried them, we don’t have to carry them alone, and we don’t have to carry them forever.</p>
+</div></section>
+<section class="card" data-label="Conclusion"><div class="inner"><h2>Everyone Aches</h2><p>Every chapter ended in the same place: everyone. Everyone is weak. Everyone gets lonely. Everyone falls short. Everyone dies. Our pain lies to us twice: first by telling us we’re the exception, and then by telling us to hide. But we are not the exception, and we were never meant to hide. The people around us are aching too, in different shapes.</p>
+<p>So the way forward is almost always toward one another: to let someone in, and to reach out to someone else who is hurting.</p>
+<blockquote>
+<p>“Bear one another’s burdens, and so fulfill the law of Christ.”</p><cite>Galatians 6:2</cite></blockquote>
+<p>If this book has helped you carry something, perhaps it can help someone else carry theirs. The comfort we receive is meant to be passed on.</p>
+</div></section>
+<section class="card" data-label="Conclusion"><div class="inner"><h2>Not Yet Home</h2><p>None of this removes the ache. That was never the promise. The ache is what it feels like to be alive in a broken world, and not yet home.</p>
+<p>The people of faith who went before us felt it too. They lived and died still longing, because they knew this world wasn’t the end of the road.</p>
+<blockquote>
+<p>“These all died in faith, not having received the things promised, but having seen them and greeted them from afar, and having acknowledged that they were strangers and exiles on the earth… But as it is, they desire a better country, that is, a heavenly one. Therefore God is not ashamed to be called their God, for he has prepared for them a city.”</p><cite>Hebrews 11:13, 16</cite></blockquote>
+<p>Our aches, in the end, are a kind of homesickness. We long for something this world can’t give, because we were made for something better.</p>
+<p>But being not yet home doesn’t mean we can’t enjoy the journey. We can expect good things and ache at the same time. Good things don’t wait for the ache to leave. There are meals to share, friends to enjoy, work to do well, and simple joys in every day for those who look. And every time we sit in a room where people simply enjoy God and one another, we get a glimpse of home, started early.</p>
+</div></section>
+<section class="card" data-label="Conclusion"><div class="inner"><h2>The Gathering</h2><p>One day, the ache will end. Not because we finally found the right door out, but because God Himself will end it. And when He does, we won’t be alone. We will be part of a gathering too large to count, enjoying God and one another, with nothing left to hurt.</p>
+<blockquote>
+<p>“They shall hunger no more, neither thirst anymore; the sun shall not strike them, nor any scorching heat. For the Lamb in the midst of the throne will be their shepherd, and he will guide them to springs of living water, and God will wipe away every tear from their eyes.”</p><cite>Revelation 7:16–17</cite></blockquote>
+<p>Until that day, we carry our aches with Him, and with one another. And we keep looking forward.</p>
+<blockquote>
+<p>“May the God of hope fill you with all joy and peace in believing, so that by the power of the Holy Spirit you may abound in hope.”</p><cite>Romans 15:13</cite></blockquote>
+</div></section>
+  </main>
+  <footer class="foot">
+    <button type="button" id="prev" aria-label="Previous">Back</button>
+    <div class="progress"><i id="bar"></i></div>
+    <span class="count" id="count">1 / 134</span>
+    <button type="button" id="next" aria-label="Next">Next</button>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var track = document.getElementById('track');
+  var cards = track.querySelectorAll('.card');
+  var total = cards.length;
+  var where = document.getElementById('where');
+  var count = document.getElementById('count');
+  var bar = document.getElementById('bar');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var current = 0;
+
+  function go(i, smooth) {
+    i = Math.max(0, Math.min(total - 1, i));
+    track.scrollTo({ left: i * track.clientWidth, behavior: (smooth && !reduce) ? 'smooth' : 'auto' });
+  }
+  function update() {
+    var i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+    if (i === current && count.textContent.indexOf((i + 1) + ' /') === 0) return;
+    current = i;
+    where.textContent = cards[i].getAttribute('data-label');
+    count.textContent = (i + 1) + ' / ' + total;
+    bar.style.width = ((i + 1) / total * 100) + '%';
+    try { localStorage.setItem('bt-card', String(i)); } catch (e) {}
+  }
+  var t;
+  track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(update, 60); }, { passive: true });
+  window.addEventListener('resize', function () { go(current, false); });
+  document.getElementById('prev').addEventListener('click', function () { go(current - 1, true); });
+  document.getElementById('next').addEventListener('click', function () { go(current + 1, true); });
+  document.getElementById('tocBtn').addEventListener('click', function () { go(1, true); });
+  track.querySelectorAll('[data-go]').forEach(function (b) {
+    b.addEventListener('click', function () { go(parseInt(b.getAttribute('data-go'), 10), true); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') { go(current + 1, true); }
+    if (e.key === 'ArrowLeft') { go(current - 1, true); }
+  });
+  var start = 0;
+  try { start = parseInt(localStorage.getItem('bt-card') || '0', 10) || 0; } catch (e) {}
+  requestAnimationFrame(function () { go(start, false); update(); });
+})();
+</script>
+</body>
+</html>
